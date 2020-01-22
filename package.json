@@ -1,0 +1,26 @@
+{
+  "name": "foodbank",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "build:style": "postcss src/static/css/style.css -o src/static/build/style.min.css",
+    "watch:style": "chokidar tailwind.config.js src/static/css/**/*.css -c \"npm run build:style\"",
+    "build": "npm run build:style && cross-env NODE_ENV=production npm run build:style"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^2.0.5",
+    "autoprefixer": "^9.7.4",
+    "chokidar-cli": "^2.1.0",
+    "cross-env": "^6.0.3",
+    "postcss-cli": "^7.1.0",
+    "postcss-import": "^12.0.1",
+    "tailwindcss": "^1.1.4"
+  }
+}
