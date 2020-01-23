@@ -1,0 +1,39 @@
+version: '3.7'
+
+services:
+  lighthouse:
+    image: lighthouse-app:latest
+    container_name: lighthouse-app
+    restart: unless-stopped
+    volumes:
+      - ../foodbank:/app
+      - ../foodbank/log:/var/log
+    ports:
+      - 127.0.0.1:6000:5000
+    entrypoint:
+      - sh
+      - ./run-app.sh
+    networks:
+      - lighthouse
+
+  mariadb:
+    image: mariadb:10.4
+    container_name: lighthouse-db
+    restart: unless-stopped
+    volumes:
+      - ../foodbank/db:/docker-entrypoint-initdb.d
+      - ../foodbank/secrets:/secrets
+      - ../foodbank-db/:/var/lib/mysql
+    ports:
+      - 127.0.0.1:3306:3306
+    environment:
+      - MYSQL_DATABASE=lighthouse
+      - MYSQL_ROOT_PASSWORD_FILE=/secrets/mysql_password_root
+      - MYSQL_USER_FILE=/secrets/mysql_user
+      - MYSQL_PASSWORD_FILE=/secrets/mysql_password
+    networks:
+      - lighthouse
+
+networks:
+  lighthouse:
+    driver: bridge
