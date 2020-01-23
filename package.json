@@ -1,6 +1,6 @@
 {
   "name": "lighthouse",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A check-in system for Lighthouse",
   "main": "wsgi.py",
   "scripts": {
