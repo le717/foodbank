@@ -1,11 +1,8 @@
 {
-  "name": "foodbank",
+  "name": "lighthouse",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.html",
-  "directories": {
-    "test": "tests"
-  },
+  "description": "A check-in system for Lighthouse",
+  "main": "wsgi.py",
   "scripts": {
     "build:style": "postcss src/static/css/style.css -o src/static/build/style.min.css",
     "watch:style": "chokidar tailwind.config.js src/static/css/**/*.css -c \"npm run build:style\"",
