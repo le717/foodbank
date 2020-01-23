@@ -2,7 +2,7 @@
 name = "lighthouse"
 version = "0.1.0"
 description = "A check-in system for Lighthouse"
-authors = ["Caleb Ely <le717@users.noreply.github.com>"]
+authors = ["Caleb Ely <le717@users.noreply.github.com>", "menmau <menmau@users.noreply.github.com>", "ryleegarrett <ryleegarrett@users.noreply.github.com>", "abigordon04 <abigordon04@users.noreply.github.com>", "Normantowne <Normantowne@users.noreply.github.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
