@@ -1,0 +1,78 @@
+/**
+ * Template Styles
+ *
+ * Order of contents:
+ * 1: SimplePicker
+ * 2: Inputs
+ */
+
+
+/** 1: SimplePicker **/
+.simpilepicker-date-picker {
+  font-family: "Roboto", "Cabin", Helvetica, Arial, sans-serif !important;
+}
+
+/* Use the navy color */
+.simplepicker-day-header,
+.simplepicker-date-section,
+.simplepicker-calender tbody .active::after,
+.simplepicker-calender tbody td:active::after {
+  background-color: #041e42 !important;
+  padding-bottom: 5px;
+}
+
+/* Cancel/OK button hover states */
+.simplepicker-btn:active,
+.simplepicker-btn:hover {
+  background-color: #041e42 !important;
+}
+
+/* Tighten the date spacing */
+.simplepicker-date-section .simplepicker-month-and-year,
+.simplepicker-date-section .simplepicker-date {
+  padding: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/** 2: Inputs **/
+#content input[type="text"],
+#content input[type="submit"],
+#content input[type="search"],
+#content select {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+    border: none;
+    padding: 8px 0;
+    margin: 8px 0;
+    font-size: 1.1em;
+    border-radius: 2px;
+    text-indent: 10px;
+}
+
+#content input[type="text"]:hover,
+#content input[type="text"]:focus,
+#content input[type="search"]:hover,
+#content input[type="search"]:focus,
+#content select:focus {
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.35);
+  }
+
+#content input[type="submit"] {
+  width: 400px;
+  text-align: center;
+  text-indent: 0;
+}
+
+#content input[type="checkbox"] {
+  box-shadow: none;
+  border: none;
+}
+
+#content select {
+  padding: 5px;
+  text-indent: 4px;
+  width: 140px;
+  text-align: left;
+}
+
+#content table select { width: 100%; }
+
