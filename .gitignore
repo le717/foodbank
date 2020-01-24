@@ -305,5 +305,5 @@ Temporary Items
 # End of https://www.gitignore.io/api/flask,python,visualstudiocode,node,macos
 
 secrets/
-src/static/builds
+src/static/build
 testing/

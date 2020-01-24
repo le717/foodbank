@@ -4,8 +4,8 @@
   "description": "A check-in system for Lighthouse",
   "main": "wsgi.py",
   "scripts": {
-    "build:style": "postcss src/static/css/style.css -o src/static/build/style.min.css",
-    "watch:style": "chokidar tailwind.config.js src/static/css/**/*.css -c \"npm run build:style\"",
+    "build:style": "postcss app/static/css/style.css -o app/static/build/style.min.css",
+    "watch:style": "chokidar tailwind.config.js app/static/css/**/*.css -c \"npm run build:style\"",
     "build": "npm run build:style && cross-env NODE_ENV=production npm run build:style"
   },
   "keywords": [],
