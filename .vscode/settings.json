@@ -1,0 +1,17 @@
+{
+    "python.formatting.provider": "black",
+    "python.linting.mypyEnabled": true,
+    "python.linting.flake8Enabled": true,
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+    "files.trimTrailingWhitespace": true,
+    "emmet.includeLanguages": {
+        "jinja-html": "html"
+    },
+    "[html]": {
+        "editor.formatOnSave": false
+    },
+    "[python]": {
+        "editor.tabSize": 4
+    }
+}

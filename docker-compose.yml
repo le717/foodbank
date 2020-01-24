@@ -6,8 +6,8 @@ services:
     container_name: lighthouse-app
     restart: unless-stopped
     volumes:
-      - ../foodbank:/app
-      - ../foodbank/log:/var/log
+      - ../lighthouse:/app
+      - ../lighthouse/log:/var/log
     ports:
       - 127.0.0.1:6000:5000
     entrypoint:
@@ -21,9 +21,9 @@ services:
     container_name: lighthouse-db
     restart: unless-stopped
     volumes:
-      - ../foodbank/db:/docker-entrypoint-initdb.d
-      - ../foodbank/secrets:/secrets
-      - ../foodbank-db/:/var/lib/mysql
+      - ../lighthouse/db:/docker-entrypoint-initdb.d
+      - ../lighthouse/secrets:/secrets
+      - ../lighthouse-db/:/var/lib/mysql
     ports:
       - 127.0.0.1:3306:3306
     environment:
