@@ -7,12 +7,12 @@ from webargs.flaskparser import use_args
 from app.blueprints import root
 
 
-@root.route('/')
+@root.route("/")
 def index():
-    return render_template('root/index.html')
+    return render_template("root/index.html")
 
 
-@root.route('/search', methods=["GET", "POST"])
+@root.route("/search", methods=["GET", "POST"])
 @use_args({"search_query": fields.Str(required=True)})
 def search(args: dict):
-    return f'search_query: {args["search_query"]}'
+    return f"search_query: {args['search_query']}"

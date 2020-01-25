@@ -1,5 +1,6 @@
-import os
 import json
+import os
+from typing import Any, Dict
 
 import sys_vars
 
@@ -27,13 +28,13 @@ def get_app_config(config_file: str) -> dict:
 
     # Immediately add the app-specific values to the final values
     # because there is no need to fetch these from an outside source
-    app_config = {}
+    app_config: Dict[str, Any] = {}
     app_config.update(file_content["appConfig"])
 
     # Now fetch the system variable stored in a outside source
     # if they are defined at all
-    sys_vars = file_content.get("env", []) + file_content.get("secrets", [])
-    for var in sys_vars:
+    system_vars = file_content.get("env", []) + file_content.get("secrets", [])
+    for var in system_vars:
         app_config[var] = sys_vars.get(var)
 
     return app_config
