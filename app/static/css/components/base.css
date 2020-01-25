@@ -1,0 +1,9 @@
+.font-family-primary {
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  @apply p-0;
+  @apply bg-gray-300;
+  @apply font-family-primary;
+}
