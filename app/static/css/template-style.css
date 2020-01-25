@@ -2,37 +2,10 @@
  * Template Styles
  *
  * Order of contents:
- * 1: SimplePicker
- * 2: Inputs
+* 2: Inputs
  */
 
 
-/** 1: SimplePicker **/
-.simpilepicker-date-picker {
-  font-family: "Roboto", "Cabin", Helvetica, Arial, sans-serif !important;
-}
-
-/* Use the navy color */
-.simplepicker-day-header,
-.simplepicker-date-section,
-.simplepicker-calender tbody .active::after,
-.simplepicker-calender tbody td:active::after {
-  background-color: #041e42 !important;
-  padding-bottom: 5px;
-}
-
-/* Cancel/OK button hover states */
-.simplepicker-btn:active,
-.simplepicker-btn:hover {
-  background-color: #041e42 !important;
-}
-
-/* Tighten the date spacing */
-.simplepicker-date-section .simplepicker-month-and-year,
-.simplepicker-date-section .simplepicker-date {
-  padding: 0 !important;
-  margin-bottom: 0 !important;
-}
 
 /** 2: Inputs **/
 #content input[type="text"],

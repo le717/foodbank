@@ -1,0 +1,29 @@
+header {
+  @apply fixed;
+  @apply w-full;
+  @apply bg-compassion-red;
+  @apply font-sans;
+  @apply p-4;
+  @apply shadow-lg;
+}
+
+header > .wordmark {
+
+}
+
+header .title {
+  @apply inline;
+  @apply text-white;
+  @apply tracking-wide;
+  @apply text-3xl;
+  @apply font-bold;
+  @apply mr-2;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25)
+}
+
+header .page-title {
+  @apply inline;
+  @apply text-white;
+  @apply text-2xl;
+  @apply font-normal;
+}

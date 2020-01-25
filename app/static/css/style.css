@@ -3,6 +3,12 @@
 
 /* Apply custom CSS here */
 @import "./components/base.css";
-/* @import "./components.css"; */
+@import "./components/headings.css";
+
+
+@import "./components/header.css";
+
+/* Libraries */
+@import "./components/simplepicker.css";
 
 @import "tailwindcss/utilities";
