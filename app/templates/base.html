@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ APP_NAME }}</title>
+  <title>{{ page_title }} &mdash; {{ APP_NAME }}</title>
 
   {#- Favicon #}
   <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon/favicon.png') }}">
@@ -15,7 +15,7 @@
 
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:300,400,700|Open+Sans:400,300,700&display=swap">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans:300,400,700&display=swap">
   <link rel="stylesheet" href="{{ url_for('static', filename='build/style.min.css') }}">
   {% block page_styles %}{% endblock %}
 </head>
@@ -25,23 +25,11 @@
 
   {% include "partials/root/header.html" %}
 
-  <main id="content" class="">
-    <div id="inner-wrapper" class="container-fluid col-sm-12 col-md-11">
-      <div class="row mainHeader">
-        <div class="col-sm-12">
-          <h1 id="appTitle">{{ APP_NAME }}</h1>
-        </div>
-      </div>
-
-      <div class="row">
-        <section class="col-12 col-sm-7 col-md-8 col-lg-9 col-xl-10 order-sm-1">
-          <div class="mainContent pl-0" id="main">
-            {% block content %}{% endblock %}
-          </div>
-        </section>
-      </div>
-    </div>
+  <main id="content">
+    {% block content %}{% endblock %}
   </main>
+
+  {% include "partials/root/footer.html" %}
 
   {{ JSGlue.include() }}
   <script crossorigin="anonymous" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
