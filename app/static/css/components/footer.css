@@ -1,0 +1,23 @@
+footer {
+  @apply p-3;
+  @apply pl-4;
+  @apply bg-compassion-red;
+  @apply font-sans;
+  @apply text-white;
+  @apply text-base;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+footer > div {
+  @apply block;
+}
+
+@screen lg {
+  footer > div {
+    @apply inline-block;
+  }
+  footer > div:not(:last-of-type)::after {
+    content: "|";
+    @apply mx-1;
+  }
+}
