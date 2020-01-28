@@ -1,5 +1,16 @@
 body {
+  @apply flex;
+  @apply flex-col;
+  @apply min-h-screen;
   @apply p-0;
   @apply bg-white;
-  @apply font-sans;
+  @apply font-body;
+  @apply leading-normal;
+  @apply text-base;
+}
+
+main {
+  @apply px-4;
+  @apply flex-1;
+  @apply mt-2;
 }
