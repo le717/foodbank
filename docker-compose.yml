@@ -10,6 +10,8 @@ services:
       - ../lighthouse/log:/var/log
     ports:
       - 127.0.0.1:5005:5000
+    environment:
+        - DOCKER_SECRETS_PATH=/app/secrets
     entrypoint:
       - sh
       - ./run-app.sh
