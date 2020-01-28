@@ -3,7 +3,14 @@ from toml import load
 
 
 def get_package(package: dict) -> str:
-    return f"{package['name']}=={package['version']}"
+    # Construct the package name and exact version to install
+    package_tag = f"{package['name']}=={package['version']}"
+
+    # However, if the package is a local file,
+    # we need to use that instead
+    if package.setdefault("source", {}).get("url"):
+        package_tag = package["source"]["url"]
+    return package_tag
 
 
 def filter_packages(packages: list, key: str) -> list:

@@ -217,6 +217,8 @@ tmp/
 temp/
 
 ### Python ###
+requirements.txt
+
 # Byte-compiled / optimized / DLL files
 
 # C extensions
