@@ -12,15 +12,16 @@ RUN apk update && \
 # Set up the app in the proper location
 RUN mkdir -p /app
 COPY [ "get-requirements.py", "poetry.lock", "pyproject.toml", "run-app.sh", "/app/" ]
+COPY ./contrib/ /app/contrib/
 WORKDIR /app
 
 # Install the dependencies
 RUN python3 -m pip install pip --upgrade && \
   pip3 install --no-cache-dir toml && \
   python3 ./get-requirements.py && \
-  pip3 install --no-cache-dir -r requirements.txt && \
+  pip3 install --no-cache-dir -r ./requirements.txt && \
   rm ./requirements.txt && \
   chmod u+x ./run-app.sh
 
 # Start the gunicorn service to run the app
-ENTRYPOINT ["sh", "/run-app.sh" ]
+ENTRYPOINT ["sh", "./run-app.sh" ]
