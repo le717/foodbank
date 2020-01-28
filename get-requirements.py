@@ -10,6 +10,9 @@ def get_package(package: dict) -> str:
     # we need to use that instead
     if package.setdefault("source", {}).get("url"):
         package_tag = package["source"]["url"]
+
+        # Trim off the app root path
+        package_tag = package_tag[package_tag.find("/") + 1:]
     return package_tag
 
 
