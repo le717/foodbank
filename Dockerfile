@@ -12,7 +12,7 @@ RUN apk update && \
 # Set up the app in the proper location
 RUN mkdir -p /app
 COPY [ "get-requirements.py", "poetry.lock", "pyproject.toml", "run-app.sh", "/app/" ]
-WORKDIR . /app
+WORKDIR /app
 
 # Install the dependencies
 RUN python3 -m pip install pip --upgrade && \
