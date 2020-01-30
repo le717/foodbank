@@ -34,7 +34,7 @@ WORKDIR /app
 COPY --from=node-build /app/app/static/build/style.min.css ./app/static/build/style.min.css
 
 # Install the dependencies
-RUN python3 -m pip install pip --upgrade && \
+RUN python3 -m pip install --quiet pip --upgrade && \
   pip3 install --quiet --no-cache-dir toml && \
   python3 ./get-requirements.py && \
   pip3 install --quiet --no-cache-dir -r ./requirements.txt && \
