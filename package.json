@@ -11,7 +11,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "@fullhuman/postcss-purgecss": "^2.0.5",
     "autoprefixer": "^9.7.4",
     "chokidar-cli": "^2.1.0",
