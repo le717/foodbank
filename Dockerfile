@@ -8,7 +8,8 @@ COPY [ "package*.json", "postcss.config.js", "tailwind.config.js", "./" ]
 COPY ./app/static/css/ ./app/static/css/
 
 # Install everything and build the CSS
-RUN npm install --quiet --production && npm run build
+RUN npm install --quiet --production && \
+  npm run build:style
 
 
 # 2. Build process for Python app
