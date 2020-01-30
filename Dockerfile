@@ -35,9 +35,9 @@ COPY --from=node-build /app/app/static/build/style.min.css ./app/static/build/st
 
 # Install the dependencies
 RUN python3 -m pip install pip --upgrade && \
-  pip3 install --no-cache-dir toml && \
+  pip3 install --quiet --no-cache-dir toml && \
   python3 ./get-requirements.py && \
-  pip3 install --no-cache-dir -r ./requirements.txt && \
+  pip3 install --quiet --no-cache-dir -r ./requirements.txt && \
   rm ./requirements.txt && \
   chmod u+x ./run-app.sh
 
