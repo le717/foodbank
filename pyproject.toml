@@ -13,6 +13,8 @@ Flask-WTF = "^0.14.2"
 flask-login = "^0.4.1"
 sys-vars = {path = "app/contrib/sys_vars-1.0.0-py3-none-any.whl"}
 webargs = "^5.5.2"
+records = "^0.5.3"
+pymysql = "^0.9.3"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.7"
