@@ -1,6 +1,6 @@
-# lighthouse
+# Lighthouse Project
 
-> A check-in system for Lighthouse
+> A client information and check-in system for Lighthouse
 
 
 ## Keys required
@@ -9,6 +9,13 @@
 - mysql_password
 - mysql_password_root
 
+
+## Build/Deploy
+```
+docker build -t lighthouse-app:latest .
+docker-compose up -d
+```
+
 ## License
 
-2020 Contributors
+2020 [Contributors](https://github.com/le717/lighthouse/graphs/contributors)
