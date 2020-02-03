@@ -12,7 +12,7 @@
 
 ## Build/Deploy
 ```
-docker build -t lighthouse-app:latest .
+./build-app.sh
 docker-compose up -d
 ```
 
