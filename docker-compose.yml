@@ -1,25 +1,27 @@
 version: '3.7'
 
 services:
-  nginx-proxy:
-    image: jwilder/nginx-proxy:latest
-    container_name: nginx-proxy
+ nginx:
+    image: nginx:alpine
+    container_name: nginx
     restart: unless-stopped
     ports:
       - 80:80
     volumes:
-      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./log/nginx:/var/log/nginx
+      - ./nginx:/etc/nginx/conf.d
 
   lighthouse:
     image: lighthouse-app:latest
     container_name: lighthouse-app
     restart: unless-stopped
+    ports:
+      - 127.0.0.1:5005:5005
     volumes:
       - ./:/app
       - ./log:/var/log
       - /app/app/static/build/
     environment:
-      - VIRTUAL_HOST=lighthouse.codetri.net
       - DOCKER_SECRETS_PATH=/app/secrets
     entrypoint:
       - sh
