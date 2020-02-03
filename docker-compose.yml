@@ -10,13 +10,15 @@ services:
     volumes:
       - ./log/nginx:/var/log/nginx
       - ./nginx:/etc/nginx/conf.d
+    networks:
+      - lighthouse
 
   lighthouse:
     image: lighthouse-app:latest
     container_name: lighthouse-app
     restart: unless-stopped
     ports:
-      - 127.0.0.1:5005:5005
+      - 127.0.0.1:5000:5005
     volumes:
       - ./:/app
       - ./log:/var/log
