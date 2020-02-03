@@ -1,6 +1,15 @@
 version: '3.7'
 
 services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy:latest
+    container_name: nginx-proxy
+    restart: unless-stopped
+    ports:
+      - 80:80
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+
   lighthouse:
     image: lighthouse-app:latest
     container_name: lighthouse-app
@@ -9,10 +18,9 @@ services:
       - ./:/app
       - ./log:/var/log
       - /app/app/static/build/
-    ports:
-      - 127.0.0.1:5005:5000
     environment:
-        - DOCKER_SECRETS_PATH=/app/secrets
+      - VIRTUAL_HOST=lighthouse.codetri.net
+      - DOCKER_SECRETS_PATH=/app/secrets
     entrypoint:
       - sh
       - ./run-app.sh
@@ -28,7 +36,7 @@ services:
       - ./secrets:/secrets
       - ../lighthouse-db/:/var/lib/mysql
     ports:
-      - 127.0.0.1:3306:3306
+      - 3306:3306
     environment:
       - MYSQL_DATABASE=lighthouse
       - MYSQL_ROOT_PASSWORD_FILE=/secrets/mysql_password_root
