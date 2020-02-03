@@ -16,7 +16,7 @@ RUN npm install --quiet --production && \
 FROM python:3.8-alpine AS py-build
 
 # Define any variables we require
-EXPOSE 5005
+EXPOSE 5000
 ENV PYTHONPATH=/app
 ENV TZ=America/New_York
 
