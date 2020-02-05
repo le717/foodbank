@@ -129,6 +129,22 @@ Flask = "*"
 
 [[package]]
 category = "main"
+description = "A nice way to use Redis in your Flask app"
+name = "flask-redis"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+version = "0.4.0"
+
+[package.dependencies]
+Flask = ">=0.8"
+redis = ">=2.7.6"
+
+[package.extras]
+dev = ["coverage", "pytest", "pytest-mock", "pre-commit"]
+tests = ["coverage", "pytest", "pytest-mock"]
+
+[[package]]
+category = "main"
 description = "Simple integration of Flask and WTForms."
 name = "flask-wtf"
 optional = false
@@ -310,6 +326,17 @@ pg = ["psycopg2"]
 redshift = ["sqlalchemy-redshift", "psycopg2"]
 
 [[package]]
+category = "main"
+description = "Python client for Redis key-value store"
+name = "redis"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+version = "3.4.1"
+
+[package.extras]
+hiredis = ["hiredis (>=0.1.3)"]
+
+[[package]]
 category = "dev"
 description = "Alternative regular expression module, to replace re."
 name = "regex"
@@ -436,7 +463,7 @@ version = "2.2.1"
 locale = ["Babel (>=1.3)"]
 
 [metadata]
-content-hash = "c03765b68852189479943a26afc66075fda6fa865448cbcf899921df665223b9"
+content-hash = "11c82aaea876305dfa307b4782e0e46e2c6d7fbabd1273b56d5d7ea8af7552bb"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -479,6 +506,10 @@ flask-jsglue = [
 ]
 flask-login = [
     {file = "Flask-Login-0.4.1.tar.gz", hash = "sha256:c815c1ac7b3e35e2081685e389a665f2c74d7e077cb93cecabaea352da4752ec"},
+]
+flask-redis = [
+    {file = "flask-redis-0.4.0.tar.gz", hash = "sha256:e1fccc11e7ea35c2a4d68c0b9aa58226a098e45e834d615c7b6c4928b01ddd6c"},
+    {file = "flask_redis-0.4.0-py2.py3-none-any.whl", hash = "sha256:8d79eef4eb1217095edab603acc52f935b983ae4b7655ee7c82c0dfd87315d17"},
 ]
 flask-wtf = [
     {file = "Flask-WTF-0.14.2.tar.gz", hash = "sha256:5d14d55cfd35f613d99ee7cba0fc3fbbe63ba02f544d349158c14ca15561cc36"},
@@ -580,6 +611,10 @@ pymysql = [
 records = [
     {file = "records-0.5.3-py2.py3-none-any.whl", hash = "sha256:cdbacf52c61b4a3bc10fef1286a24a63ae95255a2e7b4e8ccb1e1f96737231ed"},
     {file = "records-0.5.3.tar.gz", hash = "sha256:47e4874096f4a8f4b5bcad8c7c7cf512be36186e6e263ff3dfd750b05ff0d3c4"},
+]
+redis = [
+    {file = "redis-3.4.1-py2.py3-none-any.whl", hash = "sha256:b205cffd05ebfd0a468db74f0eedbff8df1a7bfc47521516ade4692991bb0833"},
+    {file = "redis-3.4.1.tar.gz", hash = "sha256:0dcfb335921b88a850d461dc255ff4708294943322bd55de6cfd68972490ca1f"},
 ]
 regex = [
     {file = "regex-2020.1.8-cp27-cp27m-win32.whl", hash = "sha256:4e8f02d3d72ca94efc8396f8036c0d3bcc812aefc28ec70f35bb888c74a25161"},
