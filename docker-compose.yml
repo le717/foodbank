@@ -31,8 +31,8 @@ services:
     networks:
       - lighthouse
 
-  mariadb:
-    image: mariadb:10.4
+  mysql:
+    image: mysql:8
     container_name: lighthouse-db
     restart: unless-stopped
     volumes:
@@ -41,6 +41,7 @@ services:
       - ../lighthouse-db/:/var/lib/mysql
     ports:
       - 3306:3306
+      - 33060:33060
     environment:
       - MYSQL_DATABASE=lighthouse
       - MYSQL_ROOT_PASSWORD_FILE=/secrets/mysql_password_root
