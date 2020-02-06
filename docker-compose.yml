@@ -25,6 +25,8 @@ services:
       - /app/app/static/build/
     environment:
       - DOCKER_SECRETS_PATH=/app/secrets
+      - mysql_host=lighthouse-db
+      - mysql_dbname=lighthouse
     entrypoint:
       - sh
       - ./run-app.sh

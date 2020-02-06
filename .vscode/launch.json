@@ -22,7 +22,10 @@
         "FLASK_APP": "wsgi.py",
         "FLASK_ENV": "development",
         "FLASK_DEBUG": "0",
-        "LIGHTHOUSE_SECRET_KEY": "come all unto me"
+        "LIGHTHOUSE_SECRET_KEY": "come all unto me",
+        "DOCKER_SECRETS_PATH": "./secrets",
+        "mysql_host": "127.0.0.1",
+        "mysql_dbname": "lighthouse"
       },
       "args": [
         "run",

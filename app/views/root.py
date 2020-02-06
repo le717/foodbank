@@ -5,11 +5,12 @@ from webargs import fields
 from webargs.flaskparser import use_args
 
 from app.blueprints import root
+from app.core.database import test_method
 
 
 @root.route("/")
 def index():
-    return render_template("root/index.html")
+    return render_template("root/index.html", data=test_method())
 
 
 @root.route("/search", methods=["GET", "POST"])
