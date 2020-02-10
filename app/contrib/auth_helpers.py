@@ -12,13 +12,13 @@ class User(UserMixin):
         self.is_active = True
         self.is_anonymous = False
 
-    def is_authenticated(self):
+    def is_authenticated(self):  # skipcq: PYL-E0202
         return self.is_authenticated
 
-    def is_anonymous(self):
+    def is_anonymous(self):  # skipcq: PYL-E0202
         return self.is_anonymous
 
-    def is_active(self):
+    def is_active(self):  # skipcq: PYL-E0202
         return self.is_active
 
     def get_id(self):

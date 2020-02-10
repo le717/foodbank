@@ -13,5 +13,6 @@
     },
     "[python]": {
         "editor.tabSize": 4
-    }
+    },
+    "python.pythonPath": "C:\\Users\\Caleb\\AppData\\Local\\pypoetry\\Cache\\virtualenvs\\lighthouse-ZroYjJAY-py3.8\\Scripts\\python.exe"
 }
