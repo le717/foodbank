@@ -1,6 +1,5 @@
 from typing import Optional
 
-from flask import current_app
 from flask_login import current_user, LoginManager, UserMixin
 
 from app.extensions import login_manager
@@ -13,13 +12,13 @@ class User(UserMixin):
         self.is_active = True
         self.is_anonymous = False
 
-    def is_authenticated(self):
+    def is_authenticated(self):  # skipcq: PYL-E0202
         return self.is_authenticated
 
-    def is_anonymous(self):
+    def is_anonymous(self):  # skipcq: PYL-E0202
         return self.is_anonymous
 
-    def is_active(self):
+    def is_active(self):  # skipcq: PYL-E0202
         return self.is_active
 
     def get_id(self):
@@ -32,6 +31,7 @@ def user_loader(username: str) -> Optional[User]:
     user = User(username)
     if user:
         return user
+    return None
 
 
 def authorize_user():

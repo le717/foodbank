@@ -1,4 +1,3 @@
-from flask import request
 from flask import render_template
 
 from webargs import fields
