@@ -1,6 +1,5 @@
 from typing import Optional
 
-from flask import current_app
 from flask_login import current_user, LoginManager, UserMixin
 
 from app.extensions import login_manager
@@ -32,6 +31,7 @@ def user_loader(username: str) -> Optional[User]:
     user = User(username)
     if user:
         return user
+    return None
 
 
 def authorize_user():
