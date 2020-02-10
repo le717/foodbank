@@ -1,0 +1,10 @@
+DELIMITER ;;
+CREATE TRIGGER set_client_uuid
+BEFORE INSERT ON users
+FOR EACH ROW
+BEGIN
+  IF new.id IS NULL THEN
+    SET new.id = UUID_TO_BIN(UUID());
+  END IF;
+END
+;;
