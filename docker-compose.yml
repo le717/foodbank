@@ -38,7 +38,7 @@ services:
     container_name: lighthouse-db
     restart: unless-stopped
     volumes:
-      - ./db:/docker-entrypoint-initdb.d
+      - ./sql:/docker-entrypoint-initdb.d
       - ./secrets:/secrets
       - ../lighthouse-db/:/var/lib/mysql
     ports:
