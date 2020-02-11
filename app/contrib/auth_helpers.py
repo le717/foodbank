@@ -1,7 +1,9 @@
 from typing import Optional
 
-# from flask_login import current_user, LoginManager, UserMixin
-from flask_login import UserMixin
+from flask import abort
+from flask_login import current_user, UserMixin
+
+# from flask_login import LoginManager, UserMixin
 
 from app.extensions import login_manager
 
@@ -28,7 +30,7 @@ class User(UserMixin):
 
 @login_manager.user_loader
 def user_loader(username: str) -> Optional[User]:
-    # TODO Fill this method in with your app's auth requirements
+    """Fill this method in with your app's auth requirements."""
     user = User(username)
     if user:
         return user
@@ -45,4 +47,5 @@ def authorize_user():
     if not current_user.is_authenticated:
         abort(403)
     """
-    pass
+    if not current_user.is_authenticated:
+        abort(403)
