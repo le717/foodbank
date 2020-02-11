@@ -1,7 +1,7 @@
 {
   "name": "lighthouse",
   "version": "0.1.0",
-  "description": "A check-in system for Lighthouse",
+  "description": "A client information and check-in system for Lighthouse",
   "main": "wsgi.py",
   "scripts": {
     "build:style": "postcss app/static/css/style.css -o app/static/build/style.min.css",
@@ -12,13 +12,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@fullhuman/postcss-purgecss": "^2.0.5",
+    "@fullhuman/postcss-purgecss": "^2.0.6",
     "autoprefixer": "^9.7.4",
     "chokidar-cli": "^2.1.0",
     "cross-env": "^6.0.3",
     "cssnano": "^4.1.10",
     "postcss-cli": "^7.1.0",
     "postcss-import": "^12.0.1",
-    "tailwindcss": "^1.1.4"
+    "tailwindcss": "^1.2.0"
   }
 }
