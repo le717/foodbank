@@ -1,7 +1,8 @@
 from flask import current_app
 
 import records
-from sqlalchemy.exc import IntegrityError
+
+# from sqlalchemy.exc import IntegrityError
 
 
 __all__ = []

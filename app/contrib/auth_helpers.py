@@ -1,6 +1,7 @@
 from typing import Optional
 
-from flask_login import current_user, LoginManager, UserMixin
+# from flask_login import current_user, LoginManager, UserMixin
+from flask_login import UserMixin
 
 from app.extensions import login_manager
 

@@ -18,7 +18,7 @@ def inject_current_date() -> dict:
 
 
 @current_app.url_defaults
-def cache_buster(endpoint: str, values: list) -> None:
+def cache_buster(endpoint: str, values: dict) -> None:
     """Provide cache busting for static assets."""
     # Only cache bust static assets
     if endpoint == "static":
@@ -31,6 +31,7 @@ def cache_buster(endpoint: str, values: list) -> None:
         if filename:
             file_path = join(current_app.root_path, endpoint, filename)
             values["t"] = int(stat(file_path).st_mtime)
+    return None
 
 
 @current_app.before_request
@@ -52,11 +53,12 @@ def detect_ie_browser():
     # this condition makes is rather safe and can _hopefully_ be removed
     # in the not too distant future.
     if (
-        request.user_agent.browser == "msie" and
-        request.endpoint != "static" and
-        request.endpoint != "special.unsupported_browser"
+        request.user_agent.browser == "msie"
+        and request.endpoint != "static"
+        and request.endpoint != "special.unsupported_browser"
     ):
         return redirect(url_for("special.unsupported_browser"))
+    return None
 
 
 @current_app.before_request
