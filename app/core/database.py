@@ -1,3 +1,4 @@
+from typing import List
 from flask import current_app
 
 import records
@@ -5,7 +6,7 @@ import records
 # from sqlalchemy.exc import IntegrityError
 
 
-__all__ = []
+__all__: List[str] = []
 
 
 def __connect_to_db() -> records.Database:

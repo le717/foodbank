@@ -31,7 +31,6 @@ def cache_buster(endpoint: str, values: dict) -> None:
         if filename:
             file_path = join(current_app.root_path, endpoint, filename)
             values["t"] = int(stat(file_path).st_mtime)
-    return None
 
 
 @current_app.before_request
