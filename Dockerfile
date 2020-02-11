@@ -21,8 +21,8 @@ ENV PYTHONPATH=/app
 ENV TZ=America/New_York
 
 # Install whatever system packages we need
-RUN apk update && \
-  apk add curl iputils nano tzdata
+# skipcq: DOK-DL3018
+RUN apk add --no-cache curl iputils nano tzdata
 
 # Set up the app in the proper location
 RUN mkdir -p /app
@@ -34,6 +34,7 @@ WORKDIR /app
 COPY --from=node-build /app/app/static/build/style.min.css ./app/static/build/style.min.css
 
 # Install the dependencies
+# skipcq: DOK-DL3018
 RUN python3 -m pip install --quiet pip --upgrade && \
   pip3 install --quiet --no-cache-dir toml && \
   python3 ./get-requirements.py && \
