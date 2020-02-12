@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,26 +14,25 @@
 
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans:300,400,700&display=swap">
+  <link rel="stylesheet" crossorigin="anonymous" href="http://fonts.googleapis.com/css?family=Lato:300,400,700|Open+Sans:300,400,700&display=swap">
   <link rel="stylesheet" href="{{ url_for('static', filename='build/style.min.css') }}">
   {% block page_styles %}{% endblock %}
 </head>
 
-<body class="{{ page_class|default('') }}">
+<body class="page-{{ page_class|default('') }}">
   <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
-  {% include "partials/root/header.html" %}
+  {% include "partials/header.html" %}
 
   <main id="content">
-    {% block content %}{% endblock %}
+    {% block content %}{% endblock -%}
   </main>
 
-  {% include "partials/root/footer.html" %}
+  {% include "partials/footer.html" %}
 
-  {{ JSGlue.include() }}
-  <script crossorigin="anonymous" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-    src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+  {{ JSGlue.include() -}}
+  {# <script crossorigin="anonymous" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script> -#}
   {% block page_scripts %}{% endblock -%}
 </body>
-
 </html>
