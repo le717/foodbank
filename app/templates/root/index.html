@@ -1,12 +1,19 @@
 {% extends 'base.html' %}
-{% set page_title = 'Check-in' %}
+{% set page_title = 'Sign in' %}
+{% set page_class = 'sign-in' %}
 
 {% block page_styles %}
 {% endblock %}
 
 {% block content %}
-<h1>Greetings</h1>
-<p>This page intentionally written to be pointless.</p>
+<section class="text-center">
+  <h1>Sign into Lighthouse</h1>
+  <p>Welcome to the {{ APP_NAME }}! Before you can continue, we request that you sign in. 😊</p>
+</section>
+
+<section class="text-center mt-6">
+{% include "partials/root/forms/form-sign-in.html" %}
+</section>
 {% endblock %}
 
 {% block page_scripts %}

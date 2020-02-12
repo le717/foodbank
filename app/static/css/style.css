@@ -1,13 +1,16 @@
 @import "tailwindcss/base";
-@import "tailwindcss/base";
+@import "tailwindcss/components";
 
 /* Apply custom CSS here */
 @import "./components/base.css";
 @import "./components/headings.css";
-
+@import "./components/inputs.css";
 
 @import "./components/header.css";
 @import "./components/footer.css";
+
+/* Page-specific styling */
+@import "./pages/sign-in.css";
 
 /* Libraries */
 @import "./components/simplepicker.css";

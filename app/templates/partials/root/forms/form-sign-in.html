@@ -1,0 +1,6 @@
+<form action="{{ url_for('root.sign_in') }}" method="post">
+  {{ form.csrf_token }}
+  {{ form.email.label }} {{ form.email() }}
+  {{ form.password.label }} {{ form.password() }}
+  {{ form.submit() }}
+</form>
