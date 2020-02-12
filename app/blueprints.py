@@ -22,6 +22,5 @@ def _factory(
 
 
 root = _factory("root", "/")
-special = _factory("special", "/special")
 
-all_blueprints = (root, special)
+all_blueprints = (root,)

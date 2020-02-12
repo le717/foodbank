@@ -34,33 +34,6 @@ def cache_buster(endpoint: str, values: dict) -> None:
 
 
 @current_app.before_request
-def detect_ie_browser():
-    """Redirect all IE visitors to a special page
-    informing them to get a web browser.
-    """
-    # For this to work, the following conditions must be met:
-    # 1. The visitor is using IE (doesn't matter what version)
-    # 2. We must not be currently requesting a static file
-    # (we still need page styles/resources to load)
-    # 3. We don't need to be directly requesting the special page
-    # (we create an endless redirect loop)
-
-    # Yes, UA sniffing is certainly a bad idea, but with the context
-    # the site is being used in,
-    # only the non-tech-savvy would use IE, and the tech-savvy wouldn't
-    # spoof the UA in IE to access websites. Therefore, the assumptions
-    # this condition makes is rather safe and can _hopefully_ be removed
-    # in the not too distant future.
-    if (
-        request.user_agent.browser == "msie"
-        and request.endpoint != "static"
-        and request.endpoint != "special.unsupported_browser"
-    ):
-        return redirect(url_for("special.unsupported_browser"))
-    return None
-
-
-@current_app.before_request
 def __force_https():
     """Forces the app to assume it's operating using a secure connection.
     This method should only be called in Production.
