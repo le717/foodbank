@@ -33,8 +33,8 @@ services:
     networks:
       - lighthouse
 
-  mysql:
-    image: mysql:8
+  database:
+    image: mariadb:10.4
     container_name: lighthouse-db
     restart: unless-stopped
     volumes:
