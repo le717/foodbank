@@ -1,3 +1,4 @@
+/* Generic headings styling */
 h1, h2, h3 {
   @apply font-normal;
   @apply font-sans;
@@ -8,7 +9,7 @@ h4, h5, h6 {
   @apply font-body;
 }
 
-h1 { @apply text-2xl; }
+h1 { @apply text-3xl; }
 h2 { @apply text-xl; }
 h3 { @apply text-lg; }
 h4 { @apply text-base; }

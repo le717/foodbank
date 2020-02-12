@@ -5,7 +5,7 @@ body {
   @apply p-0;
   @apply bg-white;
   @apply font-body;
-  @apply leading-normal;
+  @apply leading-relaxed;
   @apply text-base;
 }
 

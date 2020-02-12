@@ -1,0 +1,34 @@
+/* Generic input field styling */
+input,
+select {
+  @apply p-2;
+  @apply rounded-sm;
+  @apply font-body;
+  @apply text-base;
+  @apply border;
+  @apply border-solid;
+  @apply border-gray-400;
+}
+
+input:hover,
+input:focus,
+select:focus {
+  @apply shadow-outline;
+}
+
+input[type="submit"] {
+  @apply w-48;
+}
+
+/*
+input[type="checkbox"] {
+  box-shadow: none;
+  border: none;
+}
+
+select {
+  padding: 5px;
+  text-indent: 4px;
+  width: 140px;
+  text-align: left;
+} */
