@@ -1,0 +1,11 @@
+.msg-flash-area {
+  @apply text-center;
+}
+
+.msg-flash {
+
+}
+
+.msg-flash.error {
+
+}
