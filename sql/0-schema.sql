@@ -31,8 +31,8 @@ CREATE TABLE IF NOT EXISTS `campuses` (
   `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `org_id` tinyint unsigned NOT NULL,
   PRIMARY KEY (`_id`),
-  CONSTRAINT `fk_campus_organization`
-    FOREIGN KEY (org_id) REFERENCES organization (_id)
+  CONSTRAINT `fk_campus_organizations`
+    FOREIGN KEY (org_id) REFERENCES organizations (_id)
     ON DELETE RESTRICT
     ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
