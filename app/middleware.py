@@ -3,8 +3,8 @@ from os import stat
 from os.path import join
 from typing import Dict
 
-from flask import current_app, request, _request_ctx_stack
-from flask import redirect, render_template, url_for
+from flask import current_app, _request_ctx_stack
+from flask import render_template
 
 
 @current_app.context_processor
@@ -41,6 +41,11 @@ def __force_https():
     if current_app.config["ENV"].lower() == "production":
         if _request_ctx_stack is not None:
             _request_ctx_stack.top.url_adapter.url_scheme = "https"
+
+
+@current_app.errorhandler(401)
+def authorized_error_handler(e) -> tuple:
+    return render_template("errors/403.html"), 401
 
 
 @current_app.errorhandler(403)
