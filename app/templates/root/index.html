@@ -6,6 +6,8 @@
 {% endblock %}
 
 {% block content %}
+{% include "partials/flash-message.jinja2" %}
+
 <section class="text-center">
   <h1>Sign into Lighthouse</h1>
   <p>Welcome to the {{ APP_NAME }}! Before you can continue, we request that you sign in. 😊</p>

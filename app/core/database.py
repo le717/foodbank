@@ -6,7 +6,7 @@ import records
 # from sqlalchemy.exc import IntegrityError
 
 
-__all__: List[str] = []
+__all__: List[str] = ["get_user_login"]
 
 
 def __connect_to_db() -> records.Database:
@@ -19,3 +19,9 @@ def __connect_to_db() -> records.Database:
     )
     conn = records.Database(conn_str)
     return conn
+
+
+def get_user_login(email_addr: str):
+    sql = "SELECT email, password FROM users WHERE email = :email_addr"
+    with __connect_to_db() as db:
+        return db.query(sql, email_addr=email_addr).one()
