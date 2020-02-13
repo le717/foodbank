@@ -16,6 +16,7 @@ webargs = "^5.5.2"
 records = "^0.5.3"
 pymysql = "^0.9.3"
 flask-redis = "^0.4.0"
+passlib = "^1.7.2"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^3.7"
