@@ -4,6 +4,7 @@ from flask_jsglue import JSGlue
 from flask_login import LoginManager
 from flask_redis import FlaskRedis
 
+from app.core.helpers import make_redis_user_key
 from app.core.models import AuthUser
 
 
@@ -21,7 +22,10 @@ def init_extensions(app):
 
 @login_manager.user_loader
 def user_loader(username: str) -> Optional[AuthUser]:
-    if redis_client.hget(f"active_users/{username}", "active") is None:
+    if (
+        redis_client.hget(make_redis_user_key("active_users", username), "active")
+        is None
+    ):
         return None
     user = AuthUser(username)
     return user
