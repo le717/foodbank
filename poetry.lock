@@ -485,8 +485,16 @@ version = "2.2.1"
 [package.extras]
 locale = ["Babel (>=1.3)"]
 
+[[package]]
+category = "main"
+description = ""
+name = "zxcvbn"
+optional = false
+python-versions = "*"
+version = "4.4.28"
+
 [metadata]
-content-hash = "7cf70c5dd7f98726352964383e0262762b667f46e91a989ed6943cab0f607ae7"
+content-hash = "ecfcc88a355127d64965a1658664a050269d9ed7d86a1e168606d78847dd1ca3"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -751,4 +759,7 @@ werkzeug = [
 wtforms = [
     {file = "WTForms-2.2.1-py2.py3-none-any.whl", hash = "sha256:e3ee092c827582c50877cdbd49e9ce6d2c5c1f6561f849b3b068c1b8029626f1"},
     {file = "WTForms-2.2.1.tar.gz", hash = "sha256:0cdbac3e7f6878086c334aa25dc5a33869a3954e9d1e015130d65a69309b3b61"},
+]
+zxcvbn = [
+    {file = "zxcvbn-4.4.28.tar.gz", hash = "sha256:151bd816817e645e9064c354b13544f85137ea3320ca3be1fb6873ea75ef7dc1"},
 ]
