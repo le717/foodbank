@@ -1,40 +1,5 @@
-from typing import Optional
-
 from flask import abort
-from flask_login import current_user, UserMixin
-
-# from flask_login import LoginManager, UserMixin
-
-from app.extensions import login_manager
-
-
-class User(UserMixin):
-    def __init__(self, username):
-        self.username = username
-        self.is_authenticated = True
-        self.is_active = True
-        self.is_anonymous = False
-
-    def is_authenticated(self):  # skipcq: PYL-E0202
-        return self.is_authenticated
-
-    def is_anonymous(self):  # skipcq: PYL-E0202
-        return self.is_anonymous
-
-    def is_active(self):  # skipcq: PYL-E0202
-        return self.is_active
-
-    def get_id(self):
-        return self.username
-
-
-@login_manager.user_loader
-def user_loader(username: str) -> Optional[User]:
-    """Fill this method in with your app's auth requirements."""
-    user = User(username)
-    if user:
-        return user
-    return None
+from flask_login import current_user
 
 
 def authorize_user():
