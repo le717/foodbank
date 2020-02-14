@@ -22,8 +22,12 @@ def sign_in():
     if form.validate_on_submit():
         # The login was correct
         if login.confirm(form.email.data, form.password.data):
+            # Sign the user in, remembering their login if requested
             user = AuthUser(form.email.data)
-            login_user(user, remember=False)
+            login_user(user, remember=form.remember_me.data)
+
+            # Make a record of the user session
+            # TODO Record this login time in the db
             redis_key = redis_utils.make_redis_key(
                 redis_utils.RedisKeys.UserSession, user.username, "active"
             )
