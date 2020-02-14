@@ -3,9 +3,9 @@ from flask_login import current_user, login_required, login_user, logout_user
 
 from app.blueprints import root
 from app.core.forms import FormSignIn
-from app.core.helpers import make_redis_user_key
 from app.core import login
 from app.core.models import AuthUser
+from app.core import redis as redis_utils
 from app.extensions import redis_client
 
 
@@ -24,9 +24,10 @@ def sign_in():
         if login.confirm(form.email.data, form.password.data):
             user = AuthUser(form.email.data)
             login_user(user, remember=False)
-            redis_client.hset(
-                make_redis_user_key("active_users", user.username), "active", "true"
+            redis_key = redis_utils.make_redis_key(
+                redis_utils.RedisKeys.UserSession, user.username, "active"
             )
+            redis_client.set(redis_key, "true")
             return redirect(url_for("root.campus_select"))
 
         # If the login info was not valid, let the user know
@@ -48,6 +49,9 @@ def campus_select():
 @login_required
 def sign_out():
     current_user.authenticated = False
-    redis_client.delete(make_redis_user_key("active_users", current_user.username))
+    redis_key = redis_utils.make_redis_key(
+        redis_utils.RedisKeys.UserSession, current_user.username, "active"
+    )
+    redis_client.delete(redis_key)
     logout_user()
     return "signed out"
