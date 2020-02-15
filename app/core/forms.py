@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms.fields import PasswordField, SubmitField
+from wtforms.fields import BooleanField, PasswordField, SubmitField
 from wtforms.fields.html5 import EmailField
 from wtforms.validators import DataRequired, Email
 
@@ -12,9 +12,10 @@ class FormSignIn(FlaskForm):
         "Email",
         id="form-signin-email",
         validators=[DataRequired(), Email()],
-        render_kw={"placeholder": "your@email.addr"},
+        render_kw={"placeholder": "your@email.address"},
     )
     password = PasswordField(
         "Password", id="form-signin-password", validators=[DataRequired()]
     )
+    remember_me = BooleanField("Stay signed in", id="form-signin-remember")
     submit = SubmitField("Submit")

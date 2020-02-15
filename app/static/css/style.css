@@ -1,11 +1,13 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 
-/* Apply custom CSS here */
+/* HTML/page element styling */
 @import "./components/base.css";
 @import "./components/headings.css";
 @import "./components/inputs.css";
+@import "./components/flash-messages.css";
 
+/* Site layout/design styling */
 @import "./components/header.css";
 @import "./components/footer.css";
 
