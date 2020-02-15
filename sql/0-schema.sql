@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `_id` int unsigned NOT NULL AUTO_INCREMENT COMMENT 'The user PK, used for FK constraints. Should never be exposed outside of the database.',
   `user_id` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Will be filled in using a v4 UUID provided by the app. Use this when needing to expose a user ID outside the database.',
   `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(87) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `role` enum('admin','member') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'member',
   `org_id` tinyint unsigned NOT NULL,
