@@ -8,4 +8,5 @@ class RedisKeys(Enum):
 
 
 def make_redis_key(primary_key: RedisKeys, *fields: str) -> str:
+    """Build a consistent Redis key from the various given parts."""
     return f"{primary_key.value}/{'/'.join(fields)}"

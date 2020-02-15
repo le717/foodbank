@@ -9,10 +9,12 @@ class AuthUser(UserMixin):
     def is_authenticated(self):
         return self.authenticated
 
-    def is_anonymous(self):
+    @staticmethod
+    def is_anonymous():
         return False
 
-    def is_active(self):
+    @staticmethod
+    def is_active():
         return True
 
     def get_id(self):
