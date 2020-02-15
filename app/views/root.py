@@ -28,6 +28,7 @@ def sign_in():
 
             # Make a record of the user session
             # TODO Record this login time in the db
+            # TODO Load the user info
             redis_key = redis_utils.make_redis_key(
                 redis_utils.RedisKeys.UserSession, user.username, "active"
             )
