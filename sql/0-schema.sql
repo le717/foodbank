@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `campuses` (
 -- Dumping structure for table lighthouse.clients
 CREATE TABLE IF NOT EXISTS `clients` (
   `_id` int unsigned NOT NULL AUTO_INCREMENT COMMENT 'The client PK, used for FK constraints. Should never be exposed outside of the database.',
-  `client_id` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Will be filled in using a v4 UUID provided by the app. Use this when needing to expose a client ID outside the database.',
+  `client_id` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Will be filled in by the app. Use this when needing to expose a client ID outside the database.',
   `first_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `last_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `alias` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `authorized_pickups` (
 -- Dumping structure for table lighthouse.users
 CREATE TABLE IF NOT EXISTS `users` (
   `_id` int unsigned NOT NULL AUTO_INCREMENT COMMENT 'The user PK, used for FK constraints. Should never be exposed outside of the database.',
-  `user_id` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Will be filled in using a v4 UUID provided by the app. Use this when needing to expose a user ID outside the database.',
+  `user_id` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Will be filled in by the app. Use this when needing to expose a user ID outside the database.',
   `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(87) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `token_expiry_date` datetime DEFAULT NULL COMMENT 'The datetime value when the temp password token will expire.',
   `temp_password_token` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Will be filled in only when the user requests a password change.',
   `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `last_visited` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `date_last_login` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`_id`),
   UNIQUE KEY `user_id` (`user_id`),
   UNIQUE KEY `email` (`email`),
