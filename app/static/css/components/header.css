@@ -7,6 +7,10 @@ header {
   @apply shadow-lg;
 }
 
+header .wordmark {
+  @apply text-center;
+}
+
 header .title {
   @apply inline;
   @apply text-white;

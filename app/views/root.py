@@ -32,7 +32,16 @@ def sign_in():
             redis_key = redis_utils.make_redis_key(
                 redis_utils.RedisKeys.UserSession, user.username, "active"
             )
-            redis_client.set(redis_key, "true")
+
+            # Set the user session to expire in 2.5 hours,
+            # BUT ONLY if the user doesn't want the login
+            # to be remembered. In that case, just record the login
+            if form.remember_me.data:
+                redis_client.set(redis_key, "true")
+
+            else:
+                expire_time = (60 * 60) * 2.5
+                redis_client.setex(redis_key, expire_time, "true")
             return redirect(url_for("root.campus_select"))
 
         # If the login info was not valid, let the user know
@@ -47,7 +56,8 @@ def sign_in():
 @root.route("/campus-select")
 @login_required
 def campus_select():
-    return f"Welcome to Lighthouse, {current_user.username}!"
+    return f"""Welcome to Lighthouse, {current_user.username}!
+    <br><a href="/signout">sign out</a>"""
 
 
 @root.route("/signout", methods=["GET"])
