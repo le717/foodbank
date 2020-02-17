@@ -79,8 +79,8 @@ configuration = __load_module(Path("app/configuration.py"), "configuration")
 USER_ROLES = {"a": "admin", "m": "member (default)"}
 CONFIG = configuration.get_app_config("default.json")
 ORG_LIST = {
-    str(org._id): {"_id": org._id, "name": org.name}
-    for org in __get_org_list()  #  skipcq: PYL-W0212
+    str(org._id): {"_id": org._id, "name": org.name}  # skipcq: PYL-W0212
+    for org in __get_org_list()
 }
 
 
@@ -90,7 +90,7 @@ def main():
     print("## Add a user to Lighthouse ##\n")
     print("Available organizations")
     for org in __get_org_list():
-        print(f"[{org._id}] {org.name}")
+        print(f"[{org._id}] {org.name}")  # skipcq: PYL-W0212
 
     # Ask for the user's information
     print()
