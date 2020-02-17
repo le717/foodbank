@@ -1,0 +1,13 @@
+.page-404 section {
+  @apply flex;
+  @apply flex-wrap;
+  @apply flex-col;
+  @apply justify-center;
+  @apply items-center;
+  @apply h-64;
+}
+
+.page-404 h1,
+.page-404 p {
+  @apply text-center;
+}
