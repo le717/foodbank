@@ -33,14 +33,14 @@ def sign_in():
                 redis_utils.RedisKeys.UserSession, user.username, "active"
             )
 
-            # Set the user session to expire in 2.5 hours,
+            # Set the user session to expire in 3 hours,
             # BUT ONLY if the user doesn't want the login
             # to be remembered. In that case, just record the login
             if form.remember_me.data:
                 redis_client.set(redis_key, "true")
 
             else:
-                expire_time = (60 * 60) * 2.5
+                expire_time = (60 * 60) * 3
                 redis_client.setex(redis_key, expire_time, "true")
             return redirect(url_for("root.campus_select"))
 
