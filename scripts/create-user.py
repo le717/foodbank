@@ -1,4 +1,3 @@
-import datetime
 import importlib.util
 from os import environ
 from pathlib import Path
@@ -41,7 +40,9 @@ def __get_email_addr() -> str:
     """Get the user's email address."""
     valid_email = False
     while not valid_email:
-        if (email_addr := input("Please enter the email address: ")) :
+        if (
+            email_addr := input("Please enter the email address: ")
+        ) :  # skipcq: PYL-C0325
             valid_email = True
     return email_addr
 
@@ -78,11 +79,13 @@ configuration = __load_module(Path("app/configuration.py"), "configuration")
 USER_ROLES = {"a": "admin", "m": "member (default)"}
 CONFIG = configuration.get_app_config("default.json")
 ORG_LIST = {
-    str(org._id): {"_id": org._id, "name": org.name} for org in __get_org_list()
+    str(org._id): {"_id": org._id, "name": org.name}
+    for org in __get_org_list()  #  skipcq: PYL-W0212
 }
 
 
 def main():
+    """Entry point."""
     # Display the current organizations
     print("## Add a user to Lighthouse ##\n")
     print("Available organizations")
