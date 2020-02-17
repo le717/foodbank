@@ -16,7 +16,7 @@ def __load_module(path: Path, module_name: str):
     return module
 
 
-def connect_to_db() -> records.Database:
+def __connect_to_db() -> records.Database:
     """Create a connection to the database."""
     conn_str = "mysql+pymysql://{}:{}@{}/{}".format(
         CONFIG["mysql_user"],
@@ -28,7 +28,7 @@ def connect_to_db() -> records.Database:
     return conn
 
 
-def get_sql_script(script_name: str) -> str:
+def __get_sql_script(script_name: str) -> str:
     """Load the contents of a SQL script.
 
     Throws a FileNotFoundError if the script cannot be found.
@@ -60,7 +60,7 @@ def __get_user_org() -> str:
 
 def __get_org_list():
     sql = """SELECT * FROM organizations"""
-    with connect_to_db() as db:
+    with __connect_to_db() as db:
         return db.query(sql)
 
 
@@ -121,9 +121,9 @@ def main():
     temp_token = password.generate_temp_token()
 
     # Add the information to the database
-    with connect_to_db() as db:
+    with __connect_to_db() as db:
         db.query(
-            get_sql_script("user_create_new"),
+            __get_sql_script("user_create_new"),
             **{
                 "user_id": user_id,
                 "name": user_name,
@@ -134,7 +134,7 @@ def main():
             },
         )
         db.query(
-            get_sql_script("user_reset_password"),
+            __get_sql_script("user_reset_password"),
             **{"temp_password_token": temp_token, "user_id": user_id,},
         )
 
