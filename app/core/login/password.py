@@ -18,4 +18,4 @@ def generate_hash(user_password: str) -> str:
 
 def generate_temp_token() -> str:
     """Generate a temporary token for use in password resets."""
-    return genword(entropy="fair")
+    return genword(entropy="secure", length=36)
