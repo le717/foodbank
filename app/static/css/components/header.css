@@ -1,4 +1,6 @@
 header {
+  @apply flex;
+  @apply justify-center;
   @apply w-full;
   @apply bg-compassion-red;
   @apply p-4;
@@ -16,8 +18,21 @@ header .title {
 }
 
 header .page-title {
-  @apply inline;
+  @apply block;
   @apply text-white;
   @apply text-2xl;
   @apply font-normal;
+}
+
+
+@screen sm {
+  header .page-title {
+    @apply inline;
+  }
+}
+
+@screen md {
+  header {
+    @apply justify-start;
+  }
 }
