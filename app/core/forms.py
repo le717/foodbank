@@ -12,10 +12,13 @@ class FormSignIn(FlaskForm):
         "Email",
         id="form-signin-email",
         validators=[DataRequired(), Email()],
-        render_kw={"placeholder": "your@email.address"},
+        render_kw={"placeholder": "your@email.address", "autocomplete": "email"},
     )
     password = PasswordField(
-        "Password", id="form-signin-password", validators=[DataRequired()]
+        "Password",
+        id="form-signin-password",
+        validators=[DataRequired()],
+        render_kw={"autocomplete": "current-password"},
     )
     remember_me = BooleanField("Stay signed in", id="form-signin-remember")
     submit = SubmitField("Submit")
