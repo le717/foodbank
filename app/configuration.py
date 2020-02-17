@@ -1,5 +1,5 @@
 import json
-import os
+from pathlib import Path
 from typing import Any, Dict
 
 import sys_vars
@@ -23,8 +23,8 @@ def get_app_config(config_file: str) -> dict:
     @param {str} config_file - The config file name to use.
     @return {dict} - A dictionary with all config values.
     """
-    with open(os.path.join("configuration", config_file), "rt") as f:
-        file_content = json.loads(f.read())
+    path = Path(f"configuration/{config_file}").resolve()
+    file_content = json.loads(path.read_text())
 
     # Immediately add the app-specific values to the final values
     # because there is no need to fetch these from an outside source
