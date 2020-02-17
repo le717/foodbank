@@ -1,4 +1,4 @@
-.page-404 section {
+.page-error section {
   @apply flex;
   @apply flex-wrap;
   @apply flex-col;
@@ -7,7 +7,7 @@
   @apply h-64;
 }
 
-.page-404 h1,
-.page-404 p {
+.page-error h1,
+.page-error p {
   @apply text-center;
 }
