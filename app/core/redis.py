@@ -5,7 +5,7 @@ __all__ = ["RedisKeys", "KEY_EXPIRE_TIME", "make_redis_key"]
 
 
 # Default expiry time for a key
-KEY_EXPIRE_TIME = timedelta(minutes=30, hours=2)
+KEY_EXPIRE_TIME = timedelta(hours=4)
 
 
 class RedisKeys(Enum):
