@@ -10,7 +10,7 @@ import records
 __all__ = ["get_user_login"]
 
 
-def _connect_to_db() -> records.Database:
+def __connect_to_db() -> records.Database:
     """Create a connection to the database."""
     conn_str = "mysql+pymysql://{}:{}@{}/{}".format(
         current_app.config["mysql_user"],
@@ -22,7 +22,7 @@ def _connect_to_db() -> records.Database:
     return conn
 
 
-def _get_sql_script(script_name: str) -> str:
+def __get_sql_script(script_name: str) -> str:
     """Load the contents of a SQL script.
 
     Throws a FileNotFoundError if the script cannot be found.
@@ -33,6 +33,6 @@ def _get_sql_script(script_name: str) -> str:
 
 def get_user_login(email_addr: str) -> records.RecordCollection:
     """Get basic user information to determine a successful login attempt."""
-    sql = _get_sql_script("user_login")
-    with _connect_to_db() as db:
+    sql = __get_sql_script("user_login")
+    with __connect_to_db() as db:
         return db.query(sql, email_addr=email_addr).one()
