@@ -1,0 +1,13 @@
+.page-error section {
+  @apply flex;
+  @apply flex-wrap;
+  @apply flex-col;
+  @apply justify-center;
+  @apply items-center;
+  @apply h-64;
+}
+
+.page-error h1,
+.page-error p {
+  @apply text-center;
+}
