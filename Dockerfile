@@ -1,15 +1,13 @@
 # 1. Build process for node-based tooling
 FROM node:alpine AS node-build
-RUN mkdir -p /app
-WORKDIR /app
 
 # Copy the required build files and CSS files
-COPY [ "package*.json", "postcss.config.js", "tailwind.config.js", "./" ]
-COPY ./app/static/css/ ./app/static/css/
+RUN mkdir -p /app
+COPY . /app
+WORKDIR /app
 
 # Install everything and build the CSS
-RUN npm install --quiet --production && \
-  npm run build:style
+RUN npm install --quiet --production && npm run build
 
 
 # 2. Build process for Python app
@@ -22,7 +20,7 @@ ENV TZ=America/New_York
 
 # Install whatever system packages we need
 # skipcq: DOK-DL3018
-RUN apk add --no-cache curl iputils nano tzdata
+# RUN apk add --no-cache curl iputils nano tzdata
 
 # Set up the app in the proper location
 RUN mkdir -p /app
