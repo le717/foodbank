@@ -36,6 +36,11 @@ def render(template_name: str, render_opts: dict) -> Dict[str, str]:
 
 
 def send(email: Dict[str, str]) -> bool:
+    # If email sending is not configured, just pretend the email
+    # sent out correctly instead of making the caller handle the special case
+    if not current_app.config["ENABLE_EMAIL_SENDING"]:
+        return True
+
     try:
         r = requests.post(
             f'https://api.mailgun.net/v3/{current_app.config["MG_DOMAIN"]}/messages',
