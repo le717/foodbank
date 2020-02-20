@@ -32,7 +32,10 @@ def sign_in():
             redis_key = redis_utils.make_redis_key(
                 redis_utils.RedisKeys.UserSession, user.username, "active"
             )
-            redis_client.set(redis_key, "true")
+
+            # Record the user session and set it to expire
+            # at the default expire time
+            redis_client.setex(redis_key, redis_utils.KEY_EXPIRE_TIME, "true")
             return redirect(url_for("root.campus_select"))
 
         # If the login info was not valid, let the user know
@@ -47,18 +50,20 @@ def sign_in():
 @root.route("/campus-select")
 @login_required
 def campus_select():
-    return f"Welcome to Lighthouse, {current_user.username}!"
+    return f"""Welcome to Lighthouse, {current_user.username}!
+    <br><a href="/signout">sign out</a>"""
 
 
 @root.route("/signout", methods=["GET"])
 @login_required
 def sign_out():
+    # Delete all of the user's keys in Redis
+    for key in redis_utils.RedisKeys:
+        redis_key = redis_utils.make_redis_key(key, current_user.username, "active")
+        redis_client.delete(redis_key)
+
     # Remove this user session and sign them out
     current_user.authenticated = False
-    redis_key = redis_utils.make_redis_key(
-        redis_utils.RedisKeys.UserSession, current_user.username, "active"
-    )
-    redis_client.delete(redis_key)
     logout_user()
     flash("You have been successfully signed out. Thank you for your service!", "info")
     return redirect(url_for("root.index"))

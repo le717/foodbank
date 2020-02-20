@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
 {% set page_title = 'Access Forbidden' %}
+{% set page_class = 'error' %}
 
 {% block content %}
-<br>
-<h2 class="text-center">❗ You do not have the necessary permissions to see that item. ❗</h2>
-<br>
+<section>
+  <h1>It looks like you can't see that!</h1>
+  <p>Just because this is a lighthouse doesn't mean <em>everything</em> can be illuminated.</p>
+  <p>If you haven't already, you may try to <a href="{{ url_for('root.index') }}">sign in</a> to see if you can see the light. 😉</p>
+</section>
 {% endblock %}
