@@ -10,7 +10,7 @@ __all__ = ["construct", "render", "send"]
 
 
 def construct(content: dict, addr: str) -> dict:
-    """Construct a Mailgun individual email dictionary."""
+    """Construct a Mailgun email dictionary."""
     return {
         "from": f'{current_app.config["SITE_TITLE"]} <noreply@{current_app.config["APP_DOMAIN"]}>',
         "to": addr,
@@ -20,11 +20,11 @@ def construct(content: dict, addr: str) -> dict:
     }
 
 
-def render(template_name: str, render_opts: dict) -> Dict[str, str]:
+def render(template_name: str, mailgun_dict: dict) -> Dict[str, str]:
     """Render a email template with all info."""
     rendered = {
-        "html": render_template(f"emails/{template_name}.jinja2", **render_opts),
-        "text": render_template(f"emails/{template_name}.txt", **render_opts),
+        "html": render_template(f"emails/{template_name}.jinja2", **mailgun_dict),
+        "text": render_template(f"emails/{template_name}.txt", **mailgun_dict),
     }
     return rendered
 
