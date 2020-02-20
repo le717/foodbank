@@ -8,7 +8,7 @@
 .simplepicker-calender tbody .active::after,
 .simplepicker-calender tbody td:active::after {
   background-color: #041e42 !important;
-  padding-bottom: 5px;
+  @apply pb-1;
 }
 
 /* Cancel/OK button hover states */

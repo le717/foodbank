@@ -2,7 +2,8 @@ var process = require("process");
 const tailwindcss = require("tailwindcss");
 const autoprefixer = require("autoprefixer");
 const purgecss = require("@fullhuman/postcss-purgecss")({
-  content: ["./app/static/js/**/*.js", "./app/templates/**/*.html", "./app/templates/**/*.jinja2"]
+  content: ["./app/static/js/**/*.js", "./app/templates/**/*.html", "./app/templates/**/*.jinja2"],
+  css: ["./app/static/css/**/*.css"]
 });
 const cssnano = require("cssnano")({
   preset: "default",
