@@ -10,6 +10,7 @@
   ],
   "appConfig": {
     "APP_NAME": "Lighthouse",
+    "APP_DOMAIN": "fromabcthrough.xyz",
     "REDIS_URL": "redis://lighthouse-redis/0",
     "ENABLE_EMAIL_SENDING": true
   }
