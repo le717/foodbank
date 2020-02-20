@@ -1,5 +1,3 @@
-from os import fspath
-from pathlib import Path
 from typing import Dict
 
 import requests
@@ -25,12 +23,8 @@ def construct(content: dict, addr: str) -> dict:
 def render(template_name: str, render_opts: dict) -> Dict[str, str]:
     """Render a email template with all info."""
     rendered = {
-        "html": render_template(
-            fspath(Path(f"emails/{template_name}.jinja2")), **render_opts
-        ),
-        "text": render_template(
-            fspath(Path(f"emails/{template_name}.txt")), **render_opts
-        ),
+        "html": render_template(f"emails/{template_name}.jinja2", **render_opts),
+        "text": render_template(f"emails/{template_name}.txt", **render_opts),
     }
     return rendered
 
