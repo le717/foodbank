@@ -1,4 +1,7 @@
 {
-  "secrets": [],
+  "secrets": [
+    "MG_API_KEY",
+    "MG_DOMAIN"
+  ],
   "appConfig": {}
 }

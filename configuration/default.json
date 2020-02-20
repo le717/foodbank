@@ -10,6 +10,7 @@
   ],
   "appConfig": {
     "APP_NAME": "Lighthouse",
-    "REDIS_URL": "redis://lighthouse-redis/0"
+    "REDIS_URL": "redis://lighthouse-redis/0",
+    "ENABLE_EMAIL_SENDING": true
   }
 }

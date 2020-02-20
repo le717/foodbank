@@ -8,7 +8,7 @@
 - mysql_user
 - mysql_password
 - mysql_password_root
-
+- [Mailgun](https://www.mailgun.com/) configuration and secret keys
 
 ## Build/Deploy
 ```
