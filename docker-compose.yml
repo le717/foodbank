@@ -24,6 +24,7 @@ services:
       - ./log:/var/log
       - /app/app/static/build/
     environment:
+      - FLASK_ENV=production
       - DOCKER_SECRETS_PATH=/app/secrets
       - mysql_host=lighthouse-db
       - mysql_dbname=lighthouse
