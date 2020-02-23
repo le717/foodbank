@@ -6,7 +6,7 @@ from flask import current_app
 from flask import render_template
 
 
-__all__ = ["construct", "render", "send"]
+__all__ = ["construct", "render", "send", "make_and_send"]
 
 
 def construct(email_addr: str, subject: str, content: dict) -> dict:
@@ -30,6 +30,7 @@ def render(template_name: str, **render_opts: str) -> Dict[str, str]:
 
 
 def send(email: Dict[str, str]) -> bool:
+    """Send out a completed email."""
     # If email sending is not configured, just pretend the email
     # sent out correctly instead of making the caller handle the special case
     if not current_app.config["ENABLE_EMAIL_SENDING"]:
@@ -49,3 +50,12 @@ def send(email: Dict[str, str]) -> bool:
     except requests.HTTPError as exc:
         print(exc)
     return False
+
+
+def make_and_send(
+    email_addr: str, subject: str, template_name: str, **render_opts: str
+) -> bool:
+    """Convenience function to construct and send an email in one call."""
+    email_content = render(template_name, **render_opts)
+    email_msg = construct(email_addr, subject, email_content)
+    return send(email_msg)
