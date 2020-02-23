@@ -3,5 +3,7 @@
     "MG_API_KEY",
     "MG_DOMAIN"
   ],
-  "appConfig": {}
+  "appConfig": {
+    "ENABLE_EMAIL_SENDING": true
+  }
 }

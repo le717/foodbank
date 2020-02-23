@@ -10,7 +10,7 @@
 - mysql_password
 - mysql_password_root
 - mysql_dbname
-- [Mailgun](https://www.mailgun.com/) domain configuration and API key
+- [Mailgun](https://www.mailgun.com/) domain configuration and API key (_production only_)
 
 ## Build/Deploy
 ```

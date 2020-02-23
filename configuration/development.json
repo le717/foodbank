@@ -1,7 +1,6 @@
 {
   "appConfig": {
     "DEBUG": true,
-    "REDIS_URL": "redis://127.0.0.1/0",
-    "ENABLE_EMAIL_SENDING": false
+    "REDIS_URL": "redis://127.0.0.1/0"
   }
 }
