@@ -5,10 +5,12 @@
 
 ## Keys required
 - LIGHTHOUSE_SECRET_KEY
+- mysql_host
 - mysql_user
 - mysql_password
 - mysql_password_root
-
+- mysql_dbname
+- [Mailgun](https://www.mailgun.com/) domain configuration and API key
 
 ## Build/Deploy
 ```

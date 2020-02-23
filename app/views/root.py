@@ -2,6 +2,7 @@ from flask import flash, redirect, render_template, url_for
 from flask_login import current_user, login_required, login_user, logout_user
 
 from app.blueprints import root
+from app.core import email
 from app.core.forms import FormSignIn
 from app.core import login
 from app.core.models import AuthUser
@@ -13,6 +14,19 @@ from app.extensions import redis_client
 def index():
     render_opts = {"form": FormSignIn()}
     return render_template("root/index.html", **render_opts)
+
+
+@root.route("/campus-select")
+@login_required
+def campus_select():
+    return f"""Welcome to Lighthouse, {current_user.username}!
+    <br><a href="/signout">sign out</a>"""
+
+
+@root.route("/forgot-password")
+def forgot_password():
+    render_opts = {}
+    return render_template("root/forgot-password.html", **render_opts)
 
 
 @root.route("/signin", methods=["POST"])
@@ -45,13 +59,6 @@ def sign_in():
     # The form was not filled out
     flash("You must sign in to continue. 😉", "error")
     return redirect(url_for("root.index"))
-
-
-@root.route("/campus-select")
-@login_required
-def campus_select():
-    return f"""Welcome to Lighthouse, {current_user.username}!
-    <br><a href="/signout">sign out</a>"""
 
 
 @root.route("/signout", methods=["GET"])
