@@ -9,22 +9,22 @@ from flask import render_template
 __all__ = ["construct", "render", "send"]
 
 
-def construct(content: dict, addr: str) -> dict:
+def construct(email_addr: str, subject: str, content: dict) -> dict:
     """Construct a Mailgun email dictionary."""
     return {
-        "from": f'{current_app.config["SITE_TITLE"]} <noreply@{current_app.config["APP_DOMAIN"]}>',
-        "to": addr,
-        "subject": content["subject"],
+        "from": f'{current_app.config["APP_NAME"]} <noreply@{current_app.config["APP_DOMAIN"]}>',
+        "to": email_addr,
+        "subject": subject,
         "text": content["text"],
         "html": content["html"],
     }
 
 
-def render(template_name: str, mailgun_dict: dict) -> Dict[str, str]:
+def render(template_name: str, **render_opts: str) -> Dict[str, str]:
     """Render a email template with all info."""
     rendered = {
-        "html": render_template(f"emails/{template_name}.jinja2", **mailgun_dict),
-        "text": render_template(f"emails/{template_name}.txt", **mailgun_dict),
+        "html": render_template(f"emails/{template_name}.jinja2", **render_opts),
+        "text": render_template(f"emails/{template_name}.txt", **render_opts),
     }
     return rendered
 
@@ -35,6 +35,7 @@ def send(email: Dict[str, str]) -> bool:
     if not current_app.config["ENABLE_EMAIL_SENDING"]:
         return True
 
+    # Attempt to send out the email
     try:
         r = requests.post(
             f'https://api.mailgun.net/v3/{current_app.config["MG_DOMAIN"]}/messages',
@@ -42,7 +43,6 @@ def send(email: Dict[str, str]) -> bool:
             data=email,
         )
         r.raise_for_status()
-        print(r)
         return True
 
     # Some error occurred while attempting to send the email
