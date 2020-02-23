@@ -46,6 +46,6 @@ def send(email: Dict[str, str]) -> bool:
         return True
 
     # Some error occurred while attempting to send the email
-    except Exception as exc:
+    except requests.HTTPError as exc:
         print(exc)
     return False
