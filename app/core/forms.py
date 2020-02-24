@@ -20,8 +20,8 @@ class FormSignIn(FlaskForm):
         validators=[DataRequired()],
         render_kw={"placeholder": "•••••••••", "autocomplete": "current-password"},
     )
-    remember_me = BooleanField("Stay signed in", id="form-signin-remember")
-    submit = SubmitField("Submit")
+    remember_me = BooleanField("Remember me", id="form-signin-remember")
+    submit = SubmitField("Sign in")
 
 
 class FromForgotPassword(FlaskForm):
@@ -31,7 +31,7 @@ class FromForgotPassword(FlaskForm):
         validators=[DataRequired(), Email()],
         render_kw={"placeholder": "your@email.address", "autocomplete": "email"},
     )
-    submit = SubmitField("Submit")
+    submit = SubmitField("Reset password")
 
 
 class FromResetPassword(FlaskForm):
