@@ -10,7 +10,7 @@ __all__ = ["confirm", "has_account"]
 def confirm(email_addr: str, user_pass: str) -> Optional[bool]:
     """Confirm a valid email address/password combination."""
     # Attempt to find this user
-    user = database.muser_get_login(email_addr)
+    user = database.user_get_login(email_addr)
     if user is None:
         return None
 
