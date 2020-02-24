@@ -10,7 +10,7 @@ __all__ = ["confirm", "has_account"]
 def confirm(email_addr: str, user_pass: str) -> Optional[bool]:
     """Confirm a valid email address/password combination."""
     # Attempt to find this user
-    user = database.user_get_login(email_addr)
+    user = database.muser_get_login(email_addr)
     if user is None:
         return None
 
@@ -27,7 +27,7 @@ def has_account(email_addr: str) -> bool:
 def reset_password(email_addr: str) -> str:
     """Flag the user's account as needing a password reset.
 
-    Return the temporary reset token needed to reset the password.""""
+    Return the temporary reset token needed to reset the password."""
     token = password.generate_temp_token()
     database.reset_user_password(email_addr, token)
     return token

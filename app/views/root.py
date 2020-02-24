@@ -35,6 +35,57 @@ def reset_password():
     print(request.args)
     render_opts = {"form": forms.FromResetPassword()}
     return render_template("root/reset-password.html", **render_opts)
+
+
+@root.route("/forget-the-password", methods=["POST"])
+def process_forgot_password():
+    # Define the return URL here to permit early returns
+    return_url = redirect(url_for("root.forgot_password"))
+
+    # The form was not filled out
+    form = forms.FromForgotPassword()
+    if not form.validate_on_submit():
+        flash(
+            "Please provide your email address so we can reset your password.", "error",
+        )
+        return return_url
+
+    # We have an email address in the form!
+    # Now confirm that email is even in the database
+    if not login.has_account(form.email.data):
+        flash(
+            "Huh, we can't find that one. Pleae enter the email address connected to your account.",
+            "error",
+        )
+        return return_url
+
+    # Process the reset request and get the reset token
+    reset_token = login.reset_password(form.email.data)
+
+    # Generate and send out a password reset email
+    email_render_opts = {
+        "password_reset_url": url_for(
+            "root.reset_password", token=reset_token, _external=True
+        )
+    }
+    r = email.make_and_send(
+        form.email.data,
+        "Reset your Lighthouse password",
+        "reset-password",
+        **email_render_opts,
+    )
+
+    # Report the email sending success status
+    if r:
+        flash(f"Password reset email successfully sent to {form.email.data}! 🎉", "info")
+    else:
+        flash(
+            "Hmmm, there was an issue sending out a reset email. 🤔 Try again shortly, please.",
+            "error",
+        )
+    return return_url
+
+
 @root.route("/signin", methods=["POST"])
 def sign_in():
     # Attempt to process the form
