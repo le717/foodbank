@@ -4,4 +4,4 @@ SET
   temp_password_token = :temp_password_token,
   token_expiry_date = DATE_ADD(CURRENT_TIMESTAMP(), INTERVAL 30 MINUTE)
 WHERE
-  user_id = :user_id;
+  email = :email_addr;
