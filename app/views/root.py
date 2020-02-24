@@ -60,7 +60,7 @@ def process_forgot_password():
         return return_url
 
     # Process the reset request and get the reset token
-    reset_token = login.reset_password(form.email.data)
+    reset_token = login.flag_password_reset(form.email.data)
 
     # Generate and send out a password reset email
     email_render_opts = {

@@ -38,9 +38,9 @@ def user_get_login(email_addr: str) -> records.RecordCollection:
         return db.query(sql, email_addr=email_addr).one()
 
 
-def reset_user_password(email_addr: str, token: str) -> bool:
+def user_flag_password_reset(email_addr: str, token: str) -> bool:
     """Reset a user's password."""
-    sql = __get_sql_script("user_reset_password")
+    sql = __get_sql_script("user_flag_password_reset")
     with __connect_to_db() as db:
         return db.query(sql, temp_password_token=token, email_addr=email_addr)
     return True
