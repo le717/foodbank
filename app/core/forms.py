@@ -4,7 +4,7 @@ from wtforms.fields.html5 import EmailField
 from wtforms.validators import DataRequired, Email
 
 
-__all__ = ["FormSignIn"]
+__all__ = ["FormSignIn", "FromForgotPassword", "FromResetPassword"]
 
 
 class FormSignIn(FlaskForm):
@@ -21,4 +21,30 @@ class FormSignIn(FlaskForm):
         render_kw={"placeholder": "•••••••••", "autocomplete": "current-password"},
     )
     remember_me = BooleanField("Stay signed in", id="form-signin-remember")
+    submit = SubmitField("Submit")
+
+
+class FromForgotPassword(FlaskForm):
+    email = EmailField(
+        "Email",
+        id="form-signin-email",
+        validators=[DataRequired(), Email()],
+        render_kw={"placeholder": "your@email.address", "autocomplete": "email"},
+    )
+    submit = SubmitField("Submit")
+
+
+class FromResetPassword(FlaskForm):
+    new_password = PasswordField(
+        "New password",
+        id="form-signin-password",
+        validators=[DataRequired()],
+        render_kw={"autocomplete": "new-password"},
+    )
+    confirm_new_password = PasswordField(
+        "Confirm new password",
+        id="form-signin-password",
+        validators=[DataRequired()],
+        render_kw={"autocomplete": "new-password"},
+    )
     submit = SubmitField("Submit")

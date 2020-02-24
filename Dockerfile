@@ -32,7 +32,6 @@ WORKDIR /app
 COPY --from=node-build /app/app/static/build/style.min.css ./app/static/build/style.min.css
 
 # Install the dependencies
-# skipcq: DOK-DL3013
 RUN python3 -m pip install --quiet pip --upgrade && \
   pip3 install --quiet --no-cache-dir toml && \
   python3 ./get-requirements.py && \
