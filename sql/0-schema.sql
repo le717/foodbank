@@ -86,6 +86,17 @@ CREATE TABLE IF NOT EXISTS `authorized_pickups` (
 
 -- Data exporting was unselected.
 
+-- Dumping structure for table lighthouse.user_roless
+CREATE TABLE IF NOT EXISTS `user_roles` (
+    `_id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
+    `title` varchar(15) NOT NULL COLLATE 'utf8mb4_general_ci',
+    PRIMARY KEY (`_id`)
+)
+COLLATE='utf8mb4_general_ci'
+ENGINE=InnoDB;
+
+-- Data exporting was unselected.
+
 -- Dumping structure for table lighthouse.users
 CREATE TABLE IF NOT EXISTS `users` (
   `_id` int unsigned NOT NULL AUTO_INCREMENT COMMENT 'The user PK, used for FK constraints. Should never be exposed outside of the database.',
@@ -93,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(87) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `role` enum('admin','member') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'member',
+  `role_id` tinyint(3) unsigned NOT NULL,
   `org_id` tinyint unsigned NOT NULL,
   `needs_password_reset` tinyint(1) unsigned DEFAULT '0' COMMENT 'Will be a truthy value whenever someone requests that their password be reset.',
   `token_expiry_date` datetime DEFAULT NULL COMMENT 'The datetime value when the temp password token will expire.',
@@ -107,7 +118,11 @@ CREATE TABLE IF NOT EXISTS `users` (
   CONSTRAINT `fk_users_organizations`
     FOREIGN KEY (org_id) REFERENCES organizations (_id)
     ON DELETE RESTRICT
-    ON UPDATE RESTRICT
+    ON UPDATE RESTRICT,
+  CONSTRAINT `fk_users_user_roles`
+    FOREIGN KEY (role_id) REFERENCES user_roles (_id)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
