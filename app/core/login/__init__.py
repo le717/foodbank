@@ -14,5 +14,5 @@ def confirm(email_addr: str, user_pass: str) -> Optional[bool]:
     if user is None:
         return None
 
-    # Do the passwords match?
-    return password.confirm(user_pass, user.password)
+    # Do the passwords match and the password reset flag is not set?
+    return password.confirm(user_pass, user.password) and not user.needs_password_reset
