@@ -48,6 +48,7 @@ def user_flag_password_reset(email_addr: str, token: str) -> bool:
 
 
 def user_is_reset_token_valid(token: str) -> Optional[records.RecordCollection]:
+    """TODO write me!"""
     sql = __get_sql_script("user_is_reset_token_valid")
     with __connect_to_db() as db:
         return db.query(sql, token=token).one()
