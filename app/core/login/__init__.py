@@ -23,3 +23,11 @@ def has_account(email_addr: str) -> bool:
     user = database.user_get_login(email_addr)
     return True if user is not None else False
 
+
+def reset_password(email_addr: str) -> str:
+    """Flag the user's account as needing a password reset.
+
+    Return the temporary reset token needed to reset the password.""""
+    token = password.generate_temp_token()
+    database.reset_user_password(email_addr, token)
+    return token

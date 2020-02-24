@@ -31,7 +31,7 @@ class FromForgotPassword(FlaskForm):
         validators=[DataRequired(), Email()],
         render_kw={"placeholder": "your@email.address", "autocomplete": "email"},
     )
-    submit = SubmitField("Reset password")
+    submit = SubmitField("Request a reset")
 
 
 class FromResetPassword(FlaskForm):
@@ -47,4 +47,4 @@ class FromResetPassword(FlaskForm):
         validators=[DataRequired()],
         render_kw={"autocomplete": "new-password"},
     )
-    submit = SubmitField("Submit")
+    submit = SubmitField("Reset password")
