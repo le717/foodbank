@@ -1,9 +1,8 @@
-.page-sign-in {
-
-}
-
 .page-sign-in form {
-  @apply bg-white px-8 pt-6 pb-6 mb-4;
+  @apply mb-4;
+  @apply px-8;
+  @apply py-6;
+  @apply bg-white;
 }
 
 .page-sign-in div {
@@ -11,39 +10,50 @@
 }
 
 .page-sign-in label {
-  @apply text-lg mb-2;
+  @apply mb-2;
+  @apply text-lg;
 }
 
 .page-sign-in input[type="email"],
 .page-sign-in input[type="password"] {
-  @apply py-2;
   @apply px-3;
+  @apply py-2;
   @apply w-full;
   @apply text-lg;
 }
 
 .page-sign-in input[type="submit"] {
-  @apply bg-blue-900 text-white font-bold py-2 px-4 rounded;
+  @apply px-4;
+  @apply py-2;
+  @apply bg-blue-900;
+  @apply text-white;
+  @apply font-bold;
+  @apply rounded;
   @apply cursor-pointer;
-}
-
-.page-sign-in input[type="submit"]:hover {
-
 }
 
 .page-sign-in input[type="checkbox"] {
   @apply mr-2;
 }
 
-
 .page-sign-in a {
-  @apply text-blue-900 underline;
   @apply mt-4;
   @apply ml-2;
+  @apply text-blue-900;
+  @apply border-b;
+  @apply border-blue-900;
+}
+.page-sign-in a:hover {
+  @apply border-transparent;
+}
+.page-sign-in a:focus {
+  @apply border-transparent;
+  @apply shadow-outline;
 }
 
 .page-sign-in span {
-  @apply ml-2 text-blue-900;
+  @apply ml-2;
+  @apply text-blue-900;
 }
 
 
