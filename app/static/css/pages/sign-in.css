@@ -5,7 +5,7 @@
   @apply bg-white;
 }
 
-.page-sign-in div {
+.page-sign-in form div {
   @apply mb-6;
 }
 
@@ -36,22 +36,22 @@
   @apply mr-2;
 }
 
-.page-sign-in a {
+.page-sign-in form a {
   @apply mt-4;
   @apply ml-2;
   @apply text-blue-900;
   @apply border-b;
   @apply border-blue-900;
 }
-.page-sign-in a:hover {
+.page-sign-in form a:hover {
   @apply border-transparent;
 }
-.page-sign-in a:focus {
+.page-sign-in form a:focus {
   @apply border-transparent;
   @apply shadow-outline;
 }
 
-.page-sign-in span {
+.page-sign-in form span {
   @apply ml-2;
   @apply text-blue-900;
 }
@@ -69,7 +69,7 @@
     @apply justify-around;
   }
 
-  .page-sign-in a {
+  .page-sign-in form a {
     @apply mt-auto;
   }
 }
