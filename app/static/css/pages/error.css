@@ -1,3 +1,4 @@
+/* purgecss start ignore */
 .page-error section {
   @apply flex;
   @apply flex-wrap;
@@ -11,3 +12,4 @@
 .page-error p {
   @apply text-center;
 }
+/* purgecss end ignore */
