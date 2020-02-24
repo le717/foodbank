@@ -9,6 +9,8 @@ select {
   @apply border;
   @apply border-solid;
   @apply border-gray-400;
+  @apply text-black;
+  @apply leading-tight;
 }
 
 input:hover,

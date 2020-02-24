@@ -1,3 +1,76 @@
-.page-sign-in {
-
+.page-sign-in form {
+  @apply mb-4;
+  @apply px-8;
+  @apply py-6;
+  @apply bg-white;
 }
+
+.page-sign-in form div {
+  @apply mb-6;
+}
+
+.page-sign-in label {
+  @apply mb-2;
+  @apply text-lg;
+}
+
+.page-sign-in input[type="email"],
+.page-sign-in input[type="password"] {
+  @apply px-3;
+  @apply py-2;
+  @apply w-full;
+  @apply text-lg;
+}
+
+.page-sign-in input[type="submit"] {
+  @apply px-4;
+  @apply py-2;
+  @apply bg-blue-900;
+  @apply text-white;
+  @apply font-bold;
+  @apply rounded;
+  @apply cursor-pointer;
+}
+
+.page-sign-in input[type="checkbox"] {
+  @apply mr-2;
+}
+
+.page-sign-in form a {
+  @apply mt-4;
+  @apply ml-2;
+  @apply text-blue-900;
+  @apply border-b;
+  @apply border-blue-900;
+}
+.page-sign-in form a:hover {
+  @apply border-transparent;
+}
+.page-sign-in form a:focus {
+  @apply border-transparent;
+  @apply shadow-outline;
+}
+
+.page-sign-in form span {
+  @apply ml-2;
+  @apply text-blue-900;
+}
+
+
+.page-sign-in .wrapper-btn-sign-in {
+  @apply flex;
+  @apply flex-wrap;
+  @apply justify-center;
+  @apply items-center;
+}
+
+@screen sm {
+  .page-sign-in .wrapper-btn-sign-in {
+    @apply justify-around;
+  }
+
+  .page-sign-in form a {
+    @apply mt-auto;
+  }
+}
+

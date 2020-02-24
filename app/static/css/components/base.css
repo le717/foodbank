@@ -14,3 +14,7 @@ main {
   @apply flex-1;
   @apply mt-2;
 }
+
+a {
+  @apply no-underline;
+}

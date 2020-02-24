@@ -1,7 +1,21 @@
 <form action="{{ url_for('root.sign_in') }}" method="post">
   {{ form.csrf_token }}
-  {{ form.email.label }} {{ form.email() }}
-  {{ form.password.label }} {{ form.password() }}
-  {{ form.remember_me.label }} {{ form.remember_me() }}
-  {{ form.submit() }}
+  <div>
+    {{ form.email.label }} {{ form.email() }}
+  </div>
+
+  <div>
+    {{ form.password.label }} {{ form.password() }}
+  </div>
+
+  <div>
+    {{ form.remember_me() }} {{ form.remember_me.label }}
+  </div>
+
+  <div class="wrapper-btn-sign-in">
+    {{ form.submit() }}
+
+    <a href="password.html">Forgot Password?</a>
+  </div>
+
 </form>
