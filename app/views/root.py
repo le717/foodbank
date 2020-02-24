@@ -1,5 +1,5 @@
 from flask import request
-from flask import flash, redirect, render_template, url_for
+from flask import abort, flash, redirect, render_template, url_for
 from flask_login import current_user, login_required, login_user, logout_user
 
 from app.blueprints import root
@@ -32,7 +32,15 @@ def forgot_password():
 
 @root.route("/reset-password")
 def reset_password():
-    print(request.args)
+    # The reset token must be present
+    if "token" not in request.args:
+        abort(401)
+
+    # This token has expired or already used
+    if not login.is_reset_token_valid(request.args["token"]):
+        flash("It seems this password reset has already been used.", "error")
+        return redirect(url_for("root.index"))
+
     render_opts = {"form": forms.FromResetPassword()}
     return render_template("root/reset-password.html", **render_opts)
 
