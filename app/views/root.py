@@ -45,6 +45,23 @@ def reset_password():
     return render_template("root/reset-password.html", **render_opts)
 
 
+@root.route("/reset-the-password", methods=["POST"])
+def process_reset_password():
+    form = forms.FromResetPassword()
+    # The form did not validate correctly
+    if not form.validate_on_submit():
+        flash(
+            "Please be sure to fill out both fields to reset your password into the Lighthouse.",
+            "info",
+        )
+        # TODO We need to get the token into this context
+        return redirect(url_for("root.reset_password"))
+
+    # flash("Weird. We couldn't reset your password. Please retry later.", "error")
+    flash("Password reset successfully!", "info")
+    return redirect(url_for("root.index"))
+
+
 @root.route("/forget-the-password", methods=["POST"])
 def process_forgot_password():
     # Define the return URL here to permit early returns

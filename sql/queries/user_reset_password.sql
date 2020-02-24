@@ -1,7 +1,7 @@
 UPDATE users
 SET
-  needs_password_reset = 1,
-  temp_password_token = :temp_password_token,
-  token_expiry_date = DATE_ADD(CURRENT_TIMESTAMP(), INTERVAL 30 MINUTE)
-WHERE
-  email = :email_addr;
+  `password` = :password,
+  needs_password_reset = 0,
+  token_expiry_date = null,
+  temp_password_token = null
+WHERE user_id = :user_id;
