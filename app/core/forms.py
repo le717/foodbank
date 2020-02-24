@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms.fields import BooleanField, PasswordField, SubmitField
+from wtforms.fields import BooleanField, PasswordField, SubmitField, HiddenField
 from wtforms.fields.html5 import EmailField
 from wtforms.validators import DataRequired, Email
 
@@ -27,24 +27,25 @@ class FormSignIn(FlaskForm):
 class FromForgotPassword(FlaskForm):
     email = EmailField(
         "Email",
-        id="form-signin-email",
+        id="form-pass-forgot-email",
         validators=[DataRequired(), Email()],
         render_kw={"placeholder": "your@email.address", "autocomplete": "email"},
     )
-    submit = SubmitField("Request a reset")
+    submit = SubmitField("Reset")
 
 
 class FromResetPassword(FlaskForm):
+    token = HiddenField(id="form-token")
     new_password = PasswordField(
         "New password",
-        id="form-signin-password",
+        id="form-pass-reset-password",
         validators=[DataRequired()],
         render_kw={"autocomplete": "new-password"},
     )
     confirm_new_password = PasswordField(
         "Confirm new password",
-        id="form-signin-password",
+        id="form-pass-reset-password-confirm",
         validators=[DataRequired()],
         render_kw={"autocomplete": "new-password"},
     )
-    submit = SubmitField("Reset password")
+    submit = SubmitField("Reset")

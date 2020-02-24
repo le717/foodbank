@@ -42,6 +42,7 @@ def reset_password():
         return redirect(url_for("root.index"))
 
     render_opts = {"form": forms.FromResetPassword()}
+    render_opts["form"].token.data = request.args["token"]
     return render_template("root/reset-password.html", **render_opts)
 
 
@@ -54,8 +55,7 @@ def process_reset_password():
             "Please be sure to fill out both fields to reset your password into the Lighthouse.",
             "info",
         )
-        # TODO We need to get the token into this context
-        return redirect(url_for("root.reset_password"))
+        return redirect(url_for("root.reset_password", token=form.token.data))
 
     # flash("Weird. We couldn't reset your password. Please retry later.", "error")
     flash("Password reset successfully!", "info")
