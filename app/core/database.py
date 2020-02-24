@@ -27,7 +27,7 @@ def __get_sql_script(script_name: str) -> str:
 
     Throws a FileNotFoundError if the script cannot be found.
     """
-    script = Path(f"sql/queries/{script_name}.sql").resolve()
+    script = (Path() / "sql" / "queries" / f"{script_name}.sql").resolve()
     return script.read_text()
 
 
