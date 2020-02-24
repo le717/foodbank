@@ -29,3 +29,7 @@ def flag_password_reset(email_addr: str) -> str:
     token = password.generate_temp_token()
     database.user_flag_password_reset(email_addr, token)
     return token
+
+
+def is_reset_token_valid(token: str) -> bool:
+    return bool(database.user_is_reset_token_valid(token))

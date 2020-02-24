@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import Optional
 
 from flask import current_app
 
@@ -7,7 +8,7 @@ import records
 # from sqlalchemy.exc import IntegrityError
 
 
-__all__ = ["user_get_login", "reset_user_password"]
+__all__ = ["user_get_login", "user_flag_password_reset", "user_is_reset_token_valid"]
 
 
 def __connect_to_db() -> records.Database:
@@ -31,7 +32,7 @@ def __get_sql_script(script_name: str) -> str:
     return script.read_text()
 
 
-def user_get_login(email_addr: str) -> records.RecordCollection:
+def user_get_login(email_addr: str) -> Optional[records.RecordCollection]:
     """Get basic user information to determine a successful login attempt."""
     sql = __get_sql_script("user_login")
     with __connect_to_db() as db:
@@ -44,3 +45,9 @@ def user_flag_password_reset(email_addr: str, token: str) -> bool:
     with __connect_to_db() as db:
         return db.query(sql, temp_password_token=token, email_addr=email_addr)
     return True
+
+
+def user_is_reset_token_valid(token: str) -> Optional[records.RecordCollection]:
+    sql = __get_sql_script("user_is_reset_token_valid")
+    with __connect_to_db() as db:
+        return db.query(sql, token=token).one()
