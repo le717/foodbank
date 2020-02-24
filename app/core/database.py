@@ -31,7 +31,7 @@ def __get_sql_script(script_name: str) -> str:
     return script.read_text()
 
 
-def get_user_login(email_addr: str) -> records.RecordCollection:
+def user_get_login(email_addr: str) -> records.RecordCollection:
     """Get basic user information to determine a successful login attempt."""
     sql = __get_sql_script("user_login")
     with __connect_to_db() as db:
