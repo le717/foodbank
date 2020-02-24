@@ -1,3 +1,4 @@
+from flask import request
 from flask import flash, redirect, render_template, url_for
 from flask_login import current_user, login_required, login_user, logout_user
 
@@ -29,6 +30,11 @@ def forgot_password():
     return render_template("root/forgot-password.html", **render_opts)
 
 
+@root.route("/reset-password")
+def reset_password():
+    print(request.args)
+    render_opts = {"form": forms.FromResetPassword()}
+    return render_template("root/reset-password.html", **render_opts)
 @root.route("/signin", methods=["POST"])
 def sign_in():
     # Attempt to process the form
