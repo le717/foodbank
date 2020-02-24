@@ -3,7 +3,7 @@ from flask_login import current_user, login_required, login_user, logout_user
 
 from app.blueprints import root
 from app.core import email
-from app.core.forms import FormSignIn
+from app.core import forms
 from app.core import login
 from app.core.models import AuthUser
 from app.core import redis as redis_utils
@@ -12,7 +12,7 @@ from app.extensions import redis_client
 
 @root.route("/")
 def index():
-    render_opts = {"form": FormSignIn()}
+    render_opts = {"form": forms.FormSignIn()}
     return render_template("root/index.html", **render_opts)
 
 
@@ -25,14 +25,14 @@ def campus_select():
 
 @root.route("/forgot-password")
 def forgot_password():
-    render_opts = {}
+    render_opts = {"form": forms.FromForgotPassword()}
     return render_template("root/forgot-password.html", **render_opts)
 
 
 @root.route("/signin", methods=["POST"])
 def sign_in():
     # Attempt to process the form
-    form = FormSignIn()
+    form = forms.FormSignIn()
     if form.validate_on_submit():
         # The login was correct
         if login.confirm(form.email.data, form.password.data):
