@@ -2,7 +2,6 @@ from flask import flash, redirect, render_template, url_for
 from flask_login import current_user, login_required, login_user, logout_user
 
 from app.blueprints import root
-from app.core import email
 from app.core.forms import FormSignIn
 from app.core import login
 from app.core.models import AuthUser
@@ -12,6 +11,11 @@ from app.extensions import redis_client
 
 @root.route("/")
 def index():
+    # Skip the login page if we are already signed in
+    user = current_user
+    if hasattr(user, "username"):
+        return redirect(url_for("root.campus_select"))
+
     render_opts = {"form": FormSignIn()}
     return render_template("root/index.html", **render_opts)
 
