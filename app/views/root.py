@@ -59,12 +59,12 @@ def process_reset_password():
 
     # TODO Implement AJAX route for testing password strength via zxcvbn
 
-    # Finally, reset the password
-    login.reset_user_password(form.token.data, form.confirm_new_password.data)
-
-    # Report the reset results
-    # flash("Weird. We couldn't reset your password. Please retry later.", "error")
-    flash("Password reset successfully!", "info")
+    # Finally, reset the password and report the results
+    r = login.reset_user_password(form.token.data, form.confirm_new_password.data)
+    if r:
+        flash("Password reset successfully!", "info")
+    else:
+        flash("Weird. We couldn't reset your password. Please retry later.", "error")
     return redirect(url_for("root.index"))
 
 
