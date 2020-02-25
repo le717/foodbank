@@ -34,3 +34,8 @@ def flag_password_reset(email_addr: str) -> str:
 def is_reset_token_valid(token: str) -> bool:
     """TODO write me!"""
     return bool(database.user_is_reset_token_valid(token))
+
+
+def reset_user_password(token: str, user_pass: str):
+    """TODO write me!"""
+    database.user_reset_password(token, password.generate_hash(user_pass))

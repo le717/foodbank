@@ -52,3 +52,11 @@ def user_is_reset_token_valid(token: str) -> Optional[records.RecordCollection]:
     sql = __get_sql_script("user_is_reset_token_valid")
     with __connect_to_db() as db:
         return db.query(sql, token=token).one()
+
+
+def user_reset_password(token: str, user_pass: str) -> bool:
+    """TODO write me!"""
+    sql = __get_sql_script("user_reset_password")
+    with __connect_to_db() as db:
+        db.query(sql, token=token, password=user_pass)
+        return True
