@@ -32,18 +32,22 @@ def forgot_password():
 
 @root.route("/reset-password")
 def reset_password():
-    # The reset token must be present
-    if "token" not in request.args:
-        abort(401)
-
-    # This token has expired or already used
-    if not login.is_reset_token_valid(request.args["token"]):
+    # The reset token must be present, not expired, or already used
+    if "token" not in request.args or not login.is_reset_token_valid(
+        request.args["token"]
+    ):
         flash("It seems this password reset has already been used.", "error")
         return redirect(url_for("root.index"))
 
     render_opts = {"form": forms.FromResetPassword()}
     render_opts["form"].token.data = request.args["token"]
     return render_template("root/reset-password.html", **render_opts)
+
+
+@root.route("/password-test", methods=["POST"])
+def test_password_strength():
+    # TODO Implement AJAX route for testing password strength via zxcvbn
+    return ""
 
 
 @root.route("/reset-the-password", methods=["POST"])
@@ -56,8 +60,6 @@ def process_reset_password():
             "info",
         )
         return redirect(url_for("root.reset_password", token=form.token.data))
-
-    # TODO Implement AJAX route for testing password strength via zxcvbn
 
     # Finally, reset the password and report the results
     r = login.reset_user_password(form.token.data, form.confirm_new_password.data)

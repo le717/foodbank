@@ -7,7 +7,12 @@ import records
 from sqlalchemy import exc
 
 
-__all__ = ["user_get_login", "user_flag_password_reset", "user_is_reset_token_valid", "user_reset_password"]
+__all__ = [
+    "user_get_login",
+    "user_flag_password_reset",
+    "user_is_reset_token_valid",
+    "user_reset_password",
+]
 
 
 def __connect_to_db() -> records.Database:
@@ -58,9 +63,11 @@ def user_is_reset_token_valid(token: str) -> bool:
 
 
 def user_reset_password(token: str, user_pass: str) -> bool:
-    """TODO write me!"""
+    """Reset the user's password to the new, specified password."""
     sql = __get_sql_script("user_reset_password")
-    # TODO Properly determine error state
-    with __connect_to_db() as db:
-        db.query(sql, token=token, password=user_pass)
-        return True
+    try:
+        with __connect_to_db() as db:
+            db.query(sql, token=token, password=user_pass)
+            return True
+    except exc.SQLAlchemyError:
+        return False

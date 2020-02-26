@@ -2,7 +2,13 @@ from app.core import database
 from app.core.login import password
 
 
-__all__ = ["confirm", "has_account", "flag_password_reset"]
+__all__ = [
+    "confirm",
+    "has_account",
+    "flag_password_reset",
+    "is_reset_token_valid",
+    "reset_user_password",
+]
 
 
 def confirm(email_addr: str, user_pass: str) -> bool:
@@ -36,6 +42,6 @@ def is_reset_token_valid(token: str) -> bool:
     return bool(database.user_is_reset_token_valid(token))
 
 
-def reset_user_password(token: str, user_pass: str):
-    """TODO write me!"""
-    database.user_reset_password(token, password.generate_hash(user_pass))
+def reset_user_password(token: str, user_pass: str) -> bool:
+    """Reset the user's password to their chosen new password."""
+    return database.user_reset_password(token, password.generate_hash(user_pass))
