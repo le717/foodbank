@@ -14,17 +14,10 @@ def index():
     # Skip the login page if we are already signed in
     user = current_user
     if hasattr(user, "username"):
-        return redirect(url_for("root.campus_select"))
+        return redirect(url_for("records.campus_select"))
 
     render_opts = {"form": FormSignIn()}
     return render_template("root/index.html", **render_opts)
-
-
-@root.route("/campus-select")
-@login_required
-def campus_select():
-    return f"""Welcome to Lighthouse, {current_user.username}!
-    <br><a href="/signout">sign out</a>"""
 
 
 @root.route("/forgot-password")
@@ -54,7 +47,7 @@ def sign_in():
             # Record the user session and set it to expire
             # at the default expire time
             redis_client.setex(redis_key, redis_utils.KEY_EXPIRE_TIME, "true")
-            return redirect(url_for("root.campus_select"))
+            return redirect(url_for("records.campus_select"))
 
         # If the login info was not valid, let the user know
         flash("The username or password was incorrectly entered.", "error")

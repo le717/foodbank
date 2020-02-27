@@ -6,11 +6,7 @@ def authorize_user():
     """Determine if the user is allowed to view this endpoint.
 
     While this method needs to be filled in with your app's
-    specific auth requirements in conjunction with the user load,
-    an extremely basic authorization method can be implemented as:
-
-    if not current_user.is_authenticated:
-        abort(403)
+    specific auth requirements in conjunction with the user load.
     """
-    if not current_user.is_authenticated:
+    if not hasattr(current_user, "username"):
         abort(403)

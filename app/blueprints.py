@@ -2,7 +2,7 @@ from typing import Callable, Optional
 
 from flask import Blueprint
 
-# from app.contrib.auth_helpers import authorize_user
+from app.contrib.auth_helpers import authorize_user
 
 
 def _factory(
@@ -22,5 +22,9 @@ def _factory(
 
 
 root = _factory("root", "/")
+records = _factory("records", "/records", True, authorize_user)
 
-all_blueprints = (root,)
+all_blueprints = (
+    root,
+    records,
+)
