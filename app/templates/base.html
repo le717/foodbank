@@ -25,6 +25,8 @@
   {% include "partials/header.html" %}
 
   <main id="content">
+    {% include "partials/flash-message.jinja2" %}
+
     {% block content %}{% endblock -%}
   </main>
 
