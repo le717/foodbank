@@ -1,5 +1,5 @@
 from flask import request
-from flask import abort, flash, redirect, render_template, url_for
+from flask import flash, redirect, render_template, url_for
 from flask_login import current_user, login_required, login_user, logout_user
 
 from app.blueprints import root
@@ -46,6 +46,7 @@ def reset_password():
 
 @root.route("/password-test", methods=["POST"])
 def test_password_strength():
+    """Test a pasword's strength and security."""
     # TODO Implement AJAX route for testing password strength via zxcvbn
     return ""
 
@@ -121,6 +122,7 @@ def process_forgot_password():
 
 @root.route("/signin", methods=["POST"])
 def sign_in():
+    """Log the user into the system."""
     # Attempt to process the form
     form = forms.FormSignIn()
     if form.validate_on_submit():
@@ -154,6 +156,7 @@ def sign_in():
 @root.route("/signout", methods=["GET"])
 @login_required
 def sign_out():
+    """Log the user out of the system."""
     # Delete all of the user's keys in Redis
     for key in redis_utils.RedisKeys:
         redis_key = redis_utils.make_redis_key(key, current_user.username, "active")
