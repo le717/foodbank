@@ -18,3 +18,10 @@ main {
 a {
   @apply no-underline;
 }
+
+.skip-to-content {
+  @apply sr-only;
+}
+.skip-to-content:focus {
+  @apply not-sr-only;
+}
