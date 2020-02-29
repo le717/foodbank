@@ -1,5 +1,6 @@
+from secrets import token_urlsafe
+
 from passlib.hash import pbkdf2_sha256
-from passlib.pwd import genword
 from passlib.utils import saslprep
 
 
@@ -18,4 +19,4 @@ def generate_hash(user_password: str) -> str:
 
 def generate_temp_token() -> str:
     """Generate a temporary token for use in password resets."""
-    return genword(entropy="secure", length=36)
+    return token_urlsafe(36)

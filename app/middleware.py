@@ -3,17 +3,19 @@ from os import stat
 from os.path import join
 from typing import Dict
 
-from flask import current_app, _request_ctx_stack
+from flask import current_app, _request_ctx_stack  # type: ignore
 from flask import render_template
 
 
 @current_app.context_processor
 def inject_app_name() -> Dict[str, str]:
+    """Make the app name available in templates."""
     return {"APP_NAME": current_app.config["APP_NAME"]}
 
 
 @current_app.context_processor
 def inject_current_date() -> dict:
+    """Make the current available in templates."""
     return {"current_date": date.today()}
 
 

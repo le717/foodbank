@@ -15,7 +15,6 @@
   <div class="wrapper-btn-sign-in">
     {{ form.submit() }}
 
-    <a href="password.html">Forgot Password?</a>
+    <a href="{{ url_for('root.forgot_password') }}">Forgot password?</a>
   </div>
-
 </form>

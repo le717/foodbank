@@ -23,7 +23,7 @@ def get_app_config(config_file: str) -> dict:
     @param {str} config_file - The config file name to use.
     @return {dict} - A dictionary with all config values.
     """
-    path = Path(f"configuration/{config_file}").resolve()
+    path = (Path() / "configuration" / config_file).resolve()
     file_content = json.loads(path.read_text())
 
     # Immediately add the app-specific values to the final values

@@ -12,7 +12,10 @@ __all__ = ["construct", "render", "send", "make_and_send"]
 def construct(email_addr: str, subject: str, content: dict) -> dict:
     """Construct a Mailgun email dictionary."""
     return {
-        "from": f'{current_app.config["APP_NAME"]} <noreply@{current_app.config["APP_DOMAIN"]}>',
+        "from": (
+            f'{current_app.config["APP_NAME"]} '
+            f'<noreply@{current_app.config["APP_DOMAIN"]}>'
+        ),
         "to": email_addr,
         "subject": subject,
         "text": content["text"],
