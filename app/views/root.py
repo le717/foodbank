@@ -30,6 +30,7 @@ def forgot_password():
 
 @root.route("/reset-password")
 def reset_password():
+    """Process resetting the account password."""
     # The reset token must be present, not expired, or already used
     if "token" not in request.args or not login.is_reset_token_valid(
         request.args["token"]
@@ -51,6 +52,7 @@ def test_password_strength():
 
 @root.route("/reset-the-password", methods=["POST"])
 def process_reset_password():
+    """Password reset page."""
     form = forms.FromResetPassword()
     # The form did not validate correctly
     if not form.validate_on_submit():
@@ -71,6 +73,7 @@ def process_reset_password():
 
 @root.route("/forget-the-password", methods=["POST"])
 def process_forgot_password():
+    """Process a request to reset an account password."""
     # Define the return URL here to permit early returns
     return_url = redirect(url_for("root.forgot_password"))
 

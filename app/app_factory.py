@@ -8,13 +8,14 @@ from app.extensions import init_extensions
 
 
 def create_app() -> Flask:
+    """Create an instance of the app, per the app factory pattern."""
     app = Flask(__name__)
 
     # Load the app configuration
     app.config.update(config.get_app_config("default.json"))
-    app.config.update(config.get_app_config(
-        config.get_app_config_file(app.config["ENV"])
-    ))
+    app.config.update(
+        config.get_app_config(config.get_app_config_file(app.config["ENV"]))
+    )
 
     # Set the app's secret key
     for key in sorted(app.config):

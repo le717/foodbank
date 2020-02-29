@@ -15,6 +15,7 @@ redis_client = FlaskRedis()
 
 
 def init_extensions(app):
+    """Register and enable Flask extensions."""
     jsglue.init_app(app)
     login_manager.init_app(app)
     redis_client.init_app(app)
