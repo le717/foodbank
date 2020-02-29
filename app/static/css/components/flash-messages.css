@@ -3,15 +3,38 @@
 }
 
 .msg-flash {
-
+  @apply px-4;
+  @apply py-3;
+  @apply my-2;
+  @apply relative;
+  @apply border;
+  @apply rounded-sm;
 }
 
-/* TODO Some shade of blue, maybe? */
 .msg-flash.info {
-
+  @apply bg-blue-100;
+  @apply border-blue-400;
+  @apply text-blue-800;
 }
 
-/* TODO Some shade of red */
 .msg-flash.error {
+  @apply bg-red-100;
+  @apply border-red-400;
+  @apply text-red-800;
+}
 
+.msg-flash img {
+  @apply mx-4;
+  @apply my-3;
+  @apply absolute;
+  @apply top-0;
+  @apply bottom-0;
+  @apply right-0;
+  @apply cursor-pointer;
+  filter: invert(0.2);
+  transition: filter 0.2s ease;
+}
+.msg-flash img:hover,
+.msg-flash img:focus {
+  filter: invert(0.35);
 }

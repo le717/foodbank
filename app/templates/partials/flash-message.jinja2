@@ -2,8 +2,10 @@
 {% with messages = get_flashed_messages(with_categories=true) %}
   {% if messages %}
     {% for category, message in messages %}
-    <div class="msg-flash {{ category }}">
+    <div class="msg-flash {{ category }}" role="alert">  {# error info #}
       <p>{{ message }}</p>
+
+      <img width="25" src="{{ url_for('static', filename='img/close.svg') }}" alt="">
     </div>
     {% endfor %}
   {% endif %}
