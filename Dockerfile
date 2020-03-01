@@ -2,8 +2,7 @@
 FROM node:alpine AS node-build
 
 # Copy the required build files and CSS files
-RUN mkdir -p /app
-COPY . /app
+COPY . /app/
 WORKDIR /app
 
 # Install everything and build the CSS
