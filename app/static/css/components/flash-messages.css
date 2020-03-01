@@ -23,7 +23,7 @@
   @apply text-red-800;
 }
 
-.msg-flash img {
+.msg-flash .btn-close {
   @apply mx-4;
   @apply my-3;
   @apply absolute;
@@ -34,7 +34,7 @@
   filter: invert(0.2);
   transition: filter 0.2s ease;
 }
-.msg-flash img:hover,
-.msg-flash img:focus {
-  filter: invert(0.35);
+.msg-flash .btn-close:hover,
+.msg-flash .btn-close:focus {
+  filter: invert(0.4);
 }
