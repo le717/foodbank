@@ -166,5 +166,5 @@ def sign_out():
     # Remove this user session and sign them out
     current_user.authenticated = False
     logout_user()
-    flash("You have been successfully signed out. Thank you for your service!", "info")
+    flash("You have successfully signed out. Thank you for serving!", "info")
     return redirect(url_for("root.index"))
