@@ -164,6 +164,9 @@ def sign_out():
         redis_key = redis_utils.make_redis_key(key, current_user.username, "active")
         redis_client.delete(redis_key)
 
+    # Also record the current time so we know when they last logged out
+    login.user_record_login_time(current_user.username)
+
     # Remove this user session and sign them out
     current_user.authenticated = False
     logout_user()
