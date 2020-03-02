@@ -108,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `org_id` tinyint unsigned NOT NULL,
   `needs_password_reset` tinyint(1) unsigned DEFAULT '0' COMMENT 'Will be a truthy value whenever someone requests that their password be reset.',
   `token_expiry_date` datetime DEFAULT NULL COMMENT 'The datetime value when the temp password token will expire.',
-  `temp_password_token` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Will be filled in only when the user requests a password change.',
+  `temp_password_token` varchar(48) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Will be filled in only when the user requests a password change.',
   `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `date_last_login` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`_id`),
