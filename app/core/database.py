@@ -1,3 +1,4 @@
+import logging
 from pathlib import Path
 from typing import Optional
 
@@ -41,7 +42,8 @@ def user_get_login(email_addr: str) -> Optional[records.RecordCollection]:
     try:
         with __connect_to_db() as db:
             return db.query(sql, email_addr=email_addr).one()
-    except exc.SQLAlchemyError:
+    except exc.SQLAlchemyError as err:
+        logging.exception(err)
         return None
 
 
@@ -51,7 +53,8 @@ def user_flag_password_reset(email_addr: str, token: str) -> bool:
     try:
         with __connect_to_db() as db:
             return db.query(sql, temp_password_token=token, email_addr=email_addr)
-    except exc.SQLAlchemyError:
+    except exc.SQLAlchemyError as err:
+        logging.exception(err)
         return False
 
 
@@ -69,5 +72,6 @@ def user_reset_password(token: str, user_pass: str) -> bool:
         with __connect_to_db() as db:
             db.query(sql, token=token, password=user_pass)
             return True
-    except exc.SQLAlchemyError:
+    except exc.SQLAlchemyError as err:
+        logging.exception(err)
         return False
