@@ -12,20 +12,29 @@ from app.extensions import redis_client
 
 
 @root.route("/")
+# route (filepath) used to access and process data; in this case the site root
 def index():
     # Skip the login page if we are already signed in
     user = current_user
     if hasattr(user, "username"):
+        # checks to see if the current user has the attributes of username verified
         return redirect(url_for("records.campus_select"))
+        # if the above attributes are verified, the site then redirects the user from current page (site root)
+        # to the location (url location) for the campus select option
 
     render_opts = {"form": forms.FormSignIn()}
+    # renders the form used for sign via the render_opts module (in this case the form FormSignIn)
     return render_template("root/index.html", **render_opts)
+    # returns the unauthenticated user to the index root with the now loaded sign in form so that they can sign
 
 
 @root.route("/forgot-password")
+# route for the forgotten password; root/forgot-password
 def forgot_password():
     render_opts = {"form": forms.FromForgotPassword()}
+    # renders the form for the forgotten password option/link
     return render_template("root/forgot-password.html", **render_opts)
+    #
 
 
 @root.route("/reset-password")

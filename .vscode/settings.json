@@ -15,5 +15,6 @@
         "editor.tabSize": 4
     },
     "css.validate": false,
-    "stylelint.enable": true
+    "stylelint.enable": true,
+    "python.pythonPath": "C:\\Users\\walla\\AppData\\Local\\pypoetry\\Cache\\virtualenvs\\lighthouse-ved7Yug2-py3.8\\Scripts\\python.exe"
 }
