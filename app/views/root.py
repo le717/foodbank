@@ -134,14 +134,15 @@ def sign_in():
             login_user(user, remember=form.remember_me.data)
 
             # Make a record of the user session
-            # TODO Record this login time in the db
+            login.user_record_login_time(form.email.data)
+
             # TODO Load the user info
-            redis_key = redis_utils.make_redis_key(
-                redis_utils.RedisKeys.UserSession, user.username, "active"
-            )
 
             # Record the user session and set it to expire
             # at the default expire time
+            redis_key = redis_utils.make_redis_key(
+                redis_utils.RedisKeys.UserSession, user.username, "active"
+            )
             redis_client.setex(redis_key, redis_utils.KEY_EXPIRE_TIME, "true")
             return redirect(url_for("records.campus_select"))
 
@@ -162,6 +163,9 @@ def sign_out():
     for key in redis_utils.RedisKeys:
         redis_key = redis_utils.make_redis_key(key, current_user.username, "active")
         redis_client.delete(redis_key)
+
+    # Also record the current time so we know when they last logged out
+    login.user_record_login_time(current_user.username)
 
     # Remove this user session and sign them out
     current_user.authenticated = False

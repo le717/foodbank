@@ -75,3 +75,11 @@ def user_reset_password(token: str, user_pass: str) -> bool:
     except exc.SQLAlchemyError as err:
         logging.exception(err)
         return False
+
+
+def user_record_login_time(email_addr: str):
+    """Record the user's latest login time."""
+    sql = __get_sql_script("user_record_login_time")
+    with __connect_to_db() as db:
+        db.query(sql, email_addr=email_addr)
+    return True
