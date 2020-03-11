@@ -45,7 +45,6 @@ New users can be added to the platform by running the `scripts/create-user.py` s
 
 ```
 ./build-app.sh
-docker-compose up -d
 ```
 
 ## License
