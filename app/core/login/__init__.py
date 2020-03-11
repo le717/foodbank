@@ -41,6 +41,7 @@ def has_account(email_addr: str) -> bool:
 
 
 def is_user_logged_in() -> bool:
+    """Determine if the user is logged in."""
     return hasattr(current_user, "username")
 
 
