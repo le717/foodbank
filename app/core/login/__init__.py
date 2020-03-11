@@ -53,9 +53,3 @@ def is_reset_token_valid(token: str) -> bool:
 def reset_user_password(token: str, user_pass: str) -> bool:
     """Reset the user's password to their chosen new password."""
     return database.user_reset_password(token, password.generate_hash(user_pass))
-
-
-def user_record_login_time(email_addr: str) -> bool:
-    """Record the user's latest login time."""
-    database.user_record_login_time(email_addr)
-    return True

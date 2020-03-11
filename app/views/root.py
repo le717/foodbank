@@ -139,9 +139,9 @@ def sign_in():
             login_user(user, remember=form.remember_me.data)
 
             # Make a record of the user session
-            login.user_record_login_time(form.email.data)
+            database.user_record_login_time(form.email.data)
 
-            # TODO Load the user info
+            # TODO Load the user info and store it in redis
 
             # Record the user session and set it to expire
             # at the default expire time
