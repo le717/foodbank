@@ -1,6 +1,5 @@
-from app.core.login import is_user_logged_in
-
 from flask import abort
+from flask_login import current_user
 
 
 def authorize_user():
@@ -9,5 +8,5 @@ def authorize_user():
     While this method needs to be filled in with your app's
     specific auth requirements in conjunction with the user load.
     """
-    if not is_user_logged_in():
+    if not hasattr(current_user, "username"):
         abort(403)
