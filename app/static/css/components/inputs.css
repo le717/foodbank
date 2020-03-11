@@ -6,6 +6,7 @@ select {
   @apply rounded-sm;
   @apply font-body;
   @apply text-base;
+  @apply outline-none;
   @apply border;
   @apply border-solid;
   @apply border-gray-400;
