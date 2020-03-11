@@ -17,6 +17,10 @@ main {
 
 a {
   @apply no-underline;
+  @apply border-b-2;
+  @apply border-solid;
+  @apply border-transparent;
+  transition: border-color 0.2s ease;
 }
 
 .skip-to-content {
