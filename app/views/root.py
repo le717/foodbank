@@ -14,8 +14,7 @@ from app.extensions import redis_client
 @root.route("/")
 def index():
     # Skip the login page if we are already signed in
-    user = current_user
-    if hasattr(user, "username"):
+    if login.is_user_logged_in():
         return redirect(url_for("records.campus_select"))
 
     render_opts = {"form": forms.FormSignIn()}
