@@ -18,7 +18,7 @@ class FormSignIn(FlaskForm):
         "Password",
         id="form-signin-password",
         validators=[DataRequired()],
-        render_kw={"placeholder": "•••••••••", "autocomplete": "current-password"},
+        render_kw={"placeholder": "Password", "autocomplete": "current-password"},
     )
     remember_me = BooleanField("Remember me", id="form-signin-remember")
     submit = SubmitField("Sign in")
