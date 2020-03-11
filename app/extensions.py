@@ -1,5 +1,6 @@
 from typing import Optional
 
+from flask import session
 from flask_jsglue import JSGlue
 from flask_login import LoginManager
 from flask_redis import FlaskRedis
@@ -25,9 +26,12 @@ def init_extensions(app):
 def user_loader(username: str) -> Optional[AuthUser]:
     """Determine if a user has the proper authentication."""
     redis_key = redis_utils.make_redis_key(
-        redis_utils.RedisKeys.UserSession, username, "active"
+        redis_utils.RedisKeys.UserSession,
+        username,
+        session.get("signin_token", ""),
+        "active",
     )
     if redis_client.get(redis_key) is None:
         return None
-    user = AuthUser(username)
+    user = AuthUser(username, session["signin_token"])
     return user

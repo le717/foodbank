@@ -2,8 +2,9 @@ from flask_login import UserMixin
 
 
 class AuthUser(UserMixin):
-    def __init__(self, username):
+    def __init__(self, username: str, token: str):
         self.username = username
+        self.signin_token = token
         self.authenticated = True
 
     def is_authenticated(self):

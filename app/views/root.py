@@ -1,4 +1,6 @@
-from flask import request
+from secrets import token_hex
+
+from flask import request, session
 from flask import flash, redirect, render_template, url_for
 from flask_login import current_user, login_required, login_user, logout_user
 
@@ -128,8 +130,12 @@ def sign_in():
     if form.validate_on_submit():
         # The login was correct
         if login.confirm(form.email.data, form.password.data):
+            # Generate a unique login token for this session
+            signin_token = token_hex(16)
+            session["signin_token"] = signin_token
+
             # Sign the user in, remembering their login if requested
-            user = AuthUser(form.email.data)
+            user = AuthUser(form.email.data, signin_token)
             login_user(user, remember=form.remember_me.data)
 
             # Make a record of the user session
@@ -140,7 +146,10 @@ def sign_in():
             # Record the user session and set it to expire
             # at the default expire time
             redis_key = redis_utils.make_redis_key(
-                redis_utils.RedisKeys.UserSession, user.username, "active"
+                redis_utils.RedisKeys.UserSession,
+                user.username,
+                signin_token,
+                "active",
             )
             redis_client.setex(redis_key, redis_utils.KEY_EXPIRE_TIME, "true")
             return redirect(url_for("records.campus_select"))
@@ -160,7 +169,9 @@ def sign_out():
     """Log the user out of the system."""
     # Delete all of the user's keys in Redis
     for key in redis_utils.RedisKeys:
-        redis_key = redis_utils.make_redis_key(key, current_user.username, "active")
+        redis_key = redis_utils.make_redis_key(
+            key, current_user.username, current_user.signin_token, "active"
+        )
         redis_client.delete(redis_key)
 
     # Also record the current time so we know when they last logged out
