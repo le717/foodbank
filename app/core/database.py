@@ -13,6 +13,7 @@ __all__ = [
     "user_flag_password_reset",
     "user_is_reset_token_valid",
     "user_reset_password",
+    "user_load_full_data",
 ]
 
 
@@ -83,3 +84,10 @@ def user_record_login_time(email_addr: str):
     with __connect_to_db() as db:
         db.query(sql, email_addr=email_addr)
     return True
+
+
+def user_load_full_data(email_addr: str) -> records.RecordCollection:
+    """Load the user's full information."""
+    sql = __get_sql_script("user_load_full_info")
+    with __connect_to_db() as db:
+        return db.query(sql, email_addr=email_addr).one()
