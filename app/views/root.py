@@ -5,9 +5,7 @@ from flask import flash, redirect, render_template, url_for
 from flask_login import current_user, login_required, login_user, logout_user
 
 from app.blueprints import root
-from app.core import email
-from app.core import forms
-from app.core import login
+from app.core import database, email, forms, login
 from app.core.models import AuthUser
 from app.core import redis as redis_utils
 from app.extensions import redis_client
@@ -90,7 +88,7 @@ def process_forgot_password():
     # Now confirm that email is even in the database
     if not login.has_account(form.email.data):
         flash(
-            "Huh, we can't find that one. Pleae enter the email address connected to your account.",
+            "Huh, we can't find that email address. Pleae enter the one connected to your account.",
             "error",
         )
         return return_url
@@ -142,6 +140,7 @@ def sign_in():
             database.user_record_login_time(form.email.data)
 
             # TODO Load the user info and store it in redis
+            user_data = database.user_load_full_data(form.email.data)
 
             # Record the user session and set it to expire
             # at the default expire time
