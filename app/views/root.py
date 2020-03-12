@@ -139,15 +139,29 @@ def sign_in():
             # Make a record of the user session
             database.user_record_login_time(form.email.data)
 
-            # TODO Load the user info and store it in redis
-            user_data = database.user_load_full_data(form.email.data)
-
             # Record the user session and set it to expire
             # at the default expire time
             redis_key = redis_utils.make_key(
                 redis_utils.RedisKeys.UserSession, user.username, signin_token, "active"
             )
             redis_client.setex(redis_key, redis_utils.KEY_EXPIRE_TIME, "true")
+
+            # Load the user info and store it in redis and store the data
+            # as individual keys in redis. This is not an ideal format, but it
+            # is what must be done until redis-py > 3.4.1 is released, which
+            # modifies the hset() signature to add a mapping= param to
+            # set the entire dictionary at once
+            # TODO Replace with hset(mapping=) param when redis-py > 3.4.1 is released
+            user_data = database.user_load_full_data(form.email.data)
+            for k, v in user_data.items():
+                redis_client.set(
+                    redis_utils.make_key(
+                        redis_utils.RedisKeys.UserData, user.username, signin_token, k
+                    ),
+                    v,
+                )
+
+            # Have the user select their current campus
             return redirect(url_for("records.campus_select"))
 
         # If the login info was not valid, let the user know
@@ -163,12 +177,16 @@ def sign_in():
 @login_required
 def sign_out():
     """Log the user out of the system."""
-    # Delete all of the user's keys in Redis
-    for key in redis_utils.RedisKeys:
-        redis_key = redis_utils.make_redis_key(
-            key, current_user.username, current_user.signin_token, "active"
+    # Go through each Redis key prefix we have and construct
+    # a wildcard key to find all stored keys
+    for prefix in redis_utils.RedisKeys:
+        key = redis_utils.make_key(
+            prefix, current_user.username, current_user.signin_token, "*"
         )
-        redis_client.delete(redis_key)
+
+        # Take the found keys and delete them from Redis
+        for record in redis_client.keys(key):
+            redis_client.delete(record)
 
     # Also record the current time so we know when they last logged out
     database.user_record_login_time(current_user.username)
