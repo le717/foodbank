@@ -150,8 +150,7 @@ def sign_in():
             # as individual keys in redis. This is not an ideal format, but it
             # is what must be done until redis-py > 3.4.1 is released, which
             # modifies the hset() signature to add a mapping= param to
-            # set the entire dictionary at once
-            # TODO Replace with hset(mapping=) param when redis-py > 3.4.1 is released
+            # set the entire dictionary at once. See GH #66.
             user_data = database.user_load_full_data(form.email.data)
             for k, v in user_data.items():
                 redis_client.set(
