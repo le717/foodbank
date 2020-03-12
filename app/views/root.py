@@ -144,11 +144,8 @@ def sign_in():
 
             # Record the user session and set it to expire
             # at the default expire time
-            redis_key = redis_utils.make_redis_key(
-                redis_utils.RedisKeys.UserSession,
-                user.username,
-                signin_token,
-                "active",
+            redis_key = redis_utils.make_key(
+                redis_utils.RedisKeys.UserSession, user.username, signin_token, "active"
             )
             redis_client.setex(redis_key, redis_utils.KEY_EXPIRE_TIME, "true")
             return redirect(url_for("records.campus_select"))
@@ -174,7 +171,7 @@ def sign_out():
         redis_client.delete(redis_key)
 
     # Also record the current time so we know when they last logged out
-    login.user_record_login_time(current_user.username)
+    database.user_record_login_time(current_user.username)
 
     # Remove this user session and sign them out
     current_user.authenticated = False

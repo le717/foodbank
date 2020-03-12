@@ -25,7 +25,7 @@ def init_extensions(app):
 @login_manager.user_loader
 def user_loader(username: str) -> Optional[AuthUser]:
     """Determine if a user has the proper authentication."""
-    redis_key = redis_utils.make_redis_key(
+    redis_key = redis_utils.make_key(
         redis_utils.RedisKeys.UserSession,
         username,
         session.get("signin_token", ""),
