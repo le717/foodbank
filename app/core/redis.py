@@ -1,7 +1,7 @@
 from datetime import timedelta
 from enum import Enum
 
-__all__ = ["RedisKeys", "KEY_EXPIRE_TIME", "make_redis_key"]
+__all__ = ["RedisKeys", "KEY_EXPIRE_TIME", "make_key"]
 
 
 # Default expiry time for a key
@@ -13,6 +13,6 @@ class RedisKeys(Enum):
     UserData = "user_data"
 
 
-def make_redis_key(primary_key: RedisKeys, *fields: str) -> str:
+def make_key(primary_key: RedisKeys, *fields: str) -> str:
     """Build a consistent Redis key from the various given parts."""
     return f"{primary_key.value}/{'/'.join(fields)}"

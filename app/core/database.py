@@ -1,6 +1,6 @@
 import logging
 from pathlib import Path
-from typing import Optional
+from typing import Dict, Optional
 
 from flask import current_app
 
@@ -13,6 +13,8 @@ __all__ = [
     "user_flag_password_reset",
     "user_is_reset_token_valid",
     "user_reset_password",
+    "user_record_login_time",
+    "user_load_full_data",
 ]
 
 
@@ -77,9 +79,16 @@ def user_reset_password(token: str, user_pass: str) -> bool:
         return False
 
 
-def user_record_login_time(email_addr: str):
+def user_record_login_time(email_addr: str) -> bool:
     """Record the user's latest login time."""
     sql = __get_sql_script("user_record_login_time")
     with __connect_to_db() as db:
         db.query(sql, email_addr=email_addr)
     return True
+
+
+def user_load_full_data(email_addr: str) -> Dict[str, str]:
+    """Load the user's full information."""
+    sql = __get_sql_script("user_load_full_info")
+    with __connect_to_db() as db:
+        return db.query(sql, email_addr=email_addr).one(as_dict=True)
