@@ -15,7 +15,7 @@ from app.extensions import redis_client
 def index():
     # Skip the login page if we are already signed in
     if login.is_user_logged_in():
-        return redirect(url_for("records.campus_select"))
+        return redirect(url_for("root.campus_select"))
 
     render_opts = {"form": forms.FormSignIn()}
     return render_template("root/index.html", **render_opts)
@@ -161,7 +161,7 @@ def sign_in():
                 )
 
             # Have the user select their current campus
-            return redirect(url_for("records.campus_select"))
+            return redirect(url_for("root.campus_select"))
 
         # If the login info was not valid, let the user know
         flash("The username or password was incorrectly entered.", "error")
@@ -195,3 +195,14 @@ def sign_out():
     logout_user()
     flash("You have successfully signed out. Thank you for serving!", "info")
     return redirect(url_for("root.index"))
+
+
+@root.route("/campus-select")
+def campus_select():
+    campuses = [(1, "Savannah"), (2, "Rincon"), (3, "Statesboro")]
+    form = forms.FormSelectCampus(campuses=campuses)
+    render_opts = {"form": form}
+    return render_template("root/campus-select.html", **render_opts)
+
+    # f"""Welcome to Lighthouse, {current_user.username}!
+    # <br><a href="{url_for('root.sign_out')}">sign out</a>"""
