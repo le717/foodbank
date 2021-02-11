@@ -122,7 +122,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   CONSTRAINT `fk_users_user_roles`
     FOREIGN KEY (role_id) REFERENCES user_roles (_id)
     ON DELETE RESTRICT
-    ON UPDATE RESTRICT,
+    ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.

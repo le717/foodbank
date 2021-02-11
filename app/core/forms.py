@@ -1,8 +1,16 @@
+from typing import List, Tuple
+
 from flask_wtf import FlaskForm
-from wtforms.fields import BooleanField, PasswordField, SubmitField, HiddenField
+from flask_wtf.form import _Auto
+from wtforms.fields import (
+    BooleanField,
+    HiddenField,
+    PasswordField,
+    RadioField,
+    SubmitField,
+)
 from wtforms.fields.html5 import EmailField
 from wtforms.validators import DataRequired, Email
-
 
 __all__ = ["FormSignIn", "FromForgotPassword", "FromResetPassword"]
 
@@ -49,3 +57,16 @@ class FromResetPassword(FlaskForm):
         render_kw={"autocomplete": "new-password"},
     )
     submit = SubmitField("Reset")
+
+
+class FormSelectCampus(FlaskForm):
+    def __init__(self, formdata=_Auto, **kwargs):
+        super().__init__(formdata=formdata, **kwargs)
+        radio = RadioField(
+            "Select your current campus",
+            id="form-campus-select-radio",
+            validators=[DataRequired()],
+            choices=kwargs["campuses"],
+        )
+
+    submit = SubmitField("Select")

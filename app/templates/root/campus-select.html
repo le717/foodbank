@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% set page_title = 'Select campus' %}
+{% set page_class = 'select-campus' %}
+
+{% block content %}
+<section class="text-center">
+  <h1>Select your campus</h1>
+  <p></p>
+</section>
+
+<section class="w-full max-w-lg mx-auto mt-6">
+  {% include "partials/root/forms/form-campus-select.html" %}
+</section>
+{% endblock %}
