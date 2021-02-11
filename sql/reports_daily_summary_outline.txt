@@ -1,0 +1,10 @@
+Name: reports_daily_summary
+Columns:
+- date: datetime
+- child: int
+- adult: int
+- senior: int
+- sum_of_people: int (computed, child + adult + senior)
+- num_people_present: int
+- org_int: int (FK to organizations._id)
+- campus_id: int (FK to campuses._id)
